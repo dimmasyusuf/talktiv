@@ -1,14 +1,22 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import Homepage from './pages/Homepage';
 
 export default function App() {
   return (
-    <Flex
-      justify="center"
-      align="center"
-      w="100%"
-      h="100vh"
-    >
-      <Heading>Talktiv.</Heading>
-    </Flex>
+    <>
+      <header>
+        <Navigation />
+      </header>
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={<Homepage />}
+          />
+        </Routes>
+      </main>
+      <footer></footer>
+    </>
   );
 }
