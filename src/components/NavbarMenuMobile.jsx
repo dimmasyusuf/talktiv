@@ -13,20 +13,82 @@ import {
   Avatar,
   Text,
 } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { RiChatSmile2Line, RiFlagLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 export default function NavbarMenuMobile() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const authUser = false;
+
+  if (authUser === null) {
+    return (
+      <>
+        <IconButton
+          icon={<HamburgerIcon />}
+          aria-label="Open menu"
+          onClick={onOpen}
+        />
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+        >
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerHeader>Menu</DrawerHeader>
+            <DrawerBody></DrawerBody>
+            <DrawerFooter>
+              <Flex
+                w="100%"
+                gap="4"
+              >
+                <Button
+                  as={Link}
+                  to="/register"
+                  rounded="sm"
+                  borderWidth="thin"
+                  borderColor="gray.700"
+                  _hover={{ bg: 'gray.700', color: 'white' }}
+                  w="100%"
+                >
+                  Register
+                </Button>
+                <Button
+                  as={Link}
+                  to="/login"
+                  bg="gray.700"
+                  color="white"
+                  _hover={{ bg: 'gray.800' }}
+                  rounded="sm"
+                  w="100%"
+                >
+                  Login
+                </Button>
+              </Flex>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </>
+    );
+  }
 
   return (
     <>
-      <IconButton
-        icon={<HamburgerIcon />}
-        aria-label="Open menu"
+      <Button
         onClick={onOpen}
-      />
+        gap="2"
+        p="2"
+        rounded="sm"
+        _hover={{ bg: 'white' }}
+      >
+        <Avatar
+          name="Dimas Yusuf Qurohman"
+          size="sm"
+          rounded="sm"
+        />
+        <Icon as={ChevronDownIcon} />
+      </Button>
       <Drawer
         isOpen={isOpen}
         placement="right"
@@ -65,6 +127,8 @@ export default function NavbarMenuMobile() {
               <Button
                 gap="2"
                 justifyContent="left"
+                rounded="sm"
+                _hover={{ bg: 'white' }}
               >
                 <Icon
                   as={RiChatSmile2Line}
@@ -75,6 +139,8 @@ export default function NavbarMenuMobile() {
               <Button
                 gap="2"
                 justifyContent="left"
+                rounded="sm"
+                _hover={{ bg: 'white' }}
               >
                 <Icon
                   as={RiFlagLine}
@@ -85,28 +151,17 @@ export default function NavbarMenuMobile() {
             </Flex>
           </DrawerBody>
           <DrawerFooter>
-            <Flex
+            <Button
+              as={Link}
+              to="/"
               w="100%"
-              gap="4"
+              bg="gray.700"
+              color="white"
+              _hover={{ bg: 'gray.800' }}
+              rounded="sm"
             >
-              <Button
-                as={Link}
-                to="/login"
-                w="100%"
-              >
-                Login
-              </Button>
-              <Button
-                as={Link}
-                to="/register"
-                w="100%"
-                bg="gray.700"
-                color="white"
-                _hover={{ bg: 'gray.800' }}
-              >
-                Join
-              </Button>
-            </Flex>
+              Logout
+            </Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

@@ -84,6 +84,7 @@ export default function NavbarMenu() {
           <Avatar
             name="Dimas Yusuf Qurohman"
             size="sm"
+            rounded="sm"
           />
         </MenuButton>
         <MenuList
@@ -99,7 +100,7 @@ export default function NavbarMenu() {
               <Avatar
                 name="Dimas Yusuf Qurohman"
                 size="md"
-                rounded="none"
+                rounded="sm"
               />
               <Flex direction="column">
                 <Text
