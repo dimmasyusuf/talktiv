@@ -15,12 +15,21 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const [show, setShow] = useState(false);
 
   return (
     <Flex direction="column">
       <form>
+        <FormControl mb="4">
+          <FormLabel>Name</FormLabel>
+          <Input
+            type="text"
+            placeholder="Full Name"
+            rounded="sm"
+          />
+          <FormErrorMessage></FormErrorMessage>
+        </FormControl>
         <FormControl mb="4">
           <FormLabel>Email</FormLabel>
           <Input
@@ -59,7 +68,7 @@ export default function LoginForm() {
           w="100%"
           mb="8"
         >
-          Login
+          Register
         </Button>
       </form>
       <Flex
@@ -67,12 +76,12 @@ export default function LoginForm() {
         justify="center"
         align="center"
       >
-        <Text>Don&apos;t have an account?</Text>
+        <Text>Already have an account?</Text>
         <Link
           as={RouterLink}
-          to="/register"
+          to="/login"
         >
-          Register
+          Login
         </Link>
       </Flex>
     </Flex>
