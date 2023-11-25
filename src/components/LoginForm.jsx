@@ -14,23 +14,62 @@ import {
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export default function LoginForm() {
+  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string().required('Email is required'),
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+  });
+
+  const handleForm = (e) => {
+    const { target } = e;
+    formik.setFieldValue(target.name, target.value);
+  };
+
+  const handleSubmit = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: LoginSchema,
+    onSubmit: handleSubmit,
+  });
 
   return (
     <Flex direction="column">
-      <form>
-        <FormControl mb="4">
+      <form onSubmit={formik.handleSubmit}>
+        <FormControl
+          mb="4"
+          isInvalid={formik.errors.email && formik.touched.email}
+        >
           <FormLabel>Email</FormLabel>
           <Input
             type="email"
             placeholder="Email Address"
             rounded="sm"
+            name="email"
+            onChange={handleForm}
           />
-          <FormErrorMessage></FormErrorMessage>
+          <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
         </FormControl>
-        <FormControl mb="6">
+        <FormControl
+          mb="6"
+          isInvalid={formik.errors.password && formik.touched.password}
+        >
           <FormLabel>Password</FormLabel>
           <InputGroup size="md">
             <Input
@@ -38,6 +77,8 @@ export default function LoginForm() {
               type={show ? 'text' : 'password'}
               placeholder="Must be at least 6 characters"
               rounded="sm"
+              name="password"
+              onChange={handleForm}
             />
             <InputRightElement width="4.5rem">
               <IconButton
@@ -49,15 +90,17 @@ export default function LoginForm() {
               />
             </InputRightElement>
           </InputGroup>
-          <FormErrorMessage></FormErrorMessage>
+          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
         <Button
+          type="submit"
           bg="gray.700"
           color="white"
           _hover={{ bg: 'gray.800' }}
           rounded="sm"
           w="100%"
           mb="8"
+          isLoading={loading}
         >
           Login
         </Button>
