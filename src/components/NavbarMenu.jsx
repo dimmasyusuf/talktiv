@@ -6,13 +6,13 @@ export default function NavbarMenu() {
     <Flex gap="4">
       <Button
         as={Link}
-        href="/leaderboard"
+        to="/login"
       >
         Login
       </Button>
       <Button
         as={Link}
-        href="/register"
+        to="/join"
         background="gray.700"
         color="white"
         _hover={{ background: 'gray.800' }}
