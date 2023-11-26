@@ -19,7 +19,6 @@ export default function RegisterPage() {
       >
         <Flex
           direction="column"
-          gap="2"
           mb="8"
           justify="center"
           align="center"

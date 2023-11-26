@@ -55,7 +55,7 @@ export default function RegisterForm() {
     <Flex direction="column">
       <form onSubmit={formik.handleSubmit}>
         <FormControl
-          mb="4"
+          mb="2"
           isInvalid={formik.errors.name && formik.touched.name}
         >
           <FormLabel>Name</FormLabel>
@@ -69,7 +69,7 @@ export default function RegisterForm() {
           <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
         </FormControl>
         <FormControl
-          mb="4"
+          mb="2"
           isInvalid={formik.errors.email && formik.touched.email}
         >
           <FormLabel>Email</FormLabel>
@@ -96,7 +96,7 @@ export default function RegisterForm() {
               name="password"
               onChange={handleForm}
             />
-            <InputRightElement width="4.5rem">
+            <InputRightElement width="3.5rem">
               <IconButton
                 h="1.75rem"
                 size="sm"
@@ -130,6 +130,7 @@ export default function RegisterForm() {
         <Link
           as={RouterLink}
           to="/login"
+          textDecoration="underline"
         >
           Login
         </Link>

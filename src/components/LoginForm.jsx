@@ -53,7 +53,7 @@ export default function LoginForm() {
     <Flex direction="column">
       <form onSubmit={formik.handleSubmit}>
         <FormControl
-          mb="4"
+          mb="2"
           isInvalid={formik.errors.email && formik.touched.email}
         >
           <FormLabel>Email</FormLabel>
@@ -80,7 +80,7 @@ export default function LoginForm() {
               name="password"
               onChange={handleForm}
             />
-            <InputRightElement width="4.5rem">
+            <InputRightElement width="3.5rem">
               <IconButton
                 h="1.75rem"
                 size="sm"
@@ -114,6 +114,7 @@ export default function LoginForm() {
         <Link
           as={RouterLink}
           to="/register"
+          textDecoration="underline"
         >
           Register
         </Link>

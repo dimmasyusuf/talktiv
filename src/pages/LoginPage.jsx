@@ -19,14 +19,13 @@ export default function LoginPage() {
       >
         <Flex
           direction="column"
-          gap="2"
           mb="8"
           justify="center"
           align="center"
         >
           <Logo />
           <Heading>Welcome Back</Heading>
-          <Text>Login to your account to continue using Talktiv.</Text>
+          <Text textAlign="center">Login to continue using Talktiv.</Text>
         </Flex>
         <LoginForm />
       </Flex>

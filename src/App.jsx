@@ -5,7 +5,7 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 
 export default function App() {
-  const authUser = true;
+  const authUser = null;
 
   if (authUser === null) {
     return (
