@@ -57,7 +57,7 @@ export default function NavbarMenu() {
             as={RiChatSmile2Line}
             boxSize="6"
           />
-          Threads
+          Thread
         </Button>
         <Button
           as={Link}
@@ -79,6 +79,7 @@ export default function NavbarMenu() {
           rightIcon={<ChevronDownIcon />}
           p="2"
           rounded="sm"
+          bg="white"
           _hover={{ bg: 'white' }}
         >
           <Avatar

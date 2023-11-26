@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import Homepage from './pages/Homepage';
+import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import LeaderboardPage from './pages/LeaderboardPage';
 
 export default function App() {
-  const authUser = null;
+  const authUser = true;
 
   if (authUser === null) {
     return (
@@ -26,18 +27,21 @@ export default function App() {
 
   return (
     <>
-      <header>
+      <header style={{ maxWidth: '1536px', margin: 'auto' }}>
         <Navigation />
       </header>
-      <main>
+      <main style={{ maxWidth: '1536px', margin: 'auto' }}>
         <Routes>
           <Route
             path="/"
-            element={<Homepage />}
+            element={<HomePage />}
+          />
+          <Route
+            path="/leaderboard"
+            element={<LeaderboardPage />}
           />
         </Routes>
       </main>
-      <footer></footer>
     </>
   );
 }

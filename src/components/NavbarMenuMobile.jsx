@@ -77,9 +77,10 @@ export default function NavbarMenuMobile() {
     <>
       <Button
         onClick={onOpen}
-        gap="2"
+        rightIcon={<ChevronDownIcon />}
         p="2"
         rounded="sm"
+        bg="white"
         _hover={{ bg: 'white' }}
       >
         <Avatar
@@ -87,7 +88,6 @@ export default function NavbarMenuMobile() {
           size="sm"
           rounded="sm"
         />
-        <Icon as={ChevronDownIcon} />
       </Button>
       <Drawer
         isOpen={isOpen}
@@ -101,7 +101,11 @@ export default function NavbarMenuMobile() {
               direction="row"
               gap="4"
             >
-              <Avatar name="Dimas Yusuf Qurohman" />
+              <Avatar
+                name="Dimas Yusuf Qurohman"
+                rounded="sm"
+                size="md"
+              />
               <Flex direction="column">
                 <Text
                   fontSize="md"
@@ -125,9 +129,13 @@ export default function NavbarMenuMobile() {
               gap="4"
             >
               <Button
+                as={Link}
+                to="/"
                 gap="2"
                 justifyContent="left"
                 rounded="sm"
+                bg="white"
+                px="0"
                 _hover={{ bg: 'white' }}
               >
                 <Icon
@@ -137,9 +145,13 @@ export default function NavbarMenuMobile() {
                 Thread
               </Button>
               <Button
+                as={Link}
+                to="/leaderboard"
                 gap="2"
                 justifyContent="left"
                 rounded="sm"
+                bg="white"
+                px="0"
                 _hover={{ bg: 'white' }}
               >
                 <Icon

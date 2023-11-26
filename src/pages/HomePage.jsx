@@ -1,6 +1,6 @@
 import { Center, Heading } from '@chakra-ui/react';
 
-export default function Homepage() {
+export default function HomePage() {
   return (
     <Center
       h="100vh"
