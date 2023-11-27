@@ -3,7 +3,7 @@ import NavbarMenu from './NavbarMenu';
 import NavbarMenuMobile from './NavbarMenuMobile';
 import { Link } from 'react-router-dom';
 
-export default function Navigation() {
+export default function Navbar() {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
 
   return (

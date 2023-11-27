@@ -1,14 +1,14 @@
-import { Flex } from '@chakra-ui/react';
+import { SimpleGrid } from '@chakra-ui/react';
 import TagItem from './TagItem';
 
 export default function TagList() {
   return (
-    <Flex
+    <SimpleGrid
+      columns={{ base: 2 }}
       w="100%"
-      maxWidth="300px"
+      maxWidth={{ base: '100%', md: '300px' }}
       px={{ base: 4, sm: 6 }}
       gap="2"
-      wrap="wrap"
     >
       <TagItem tagName="All" />
       <TagItem tagName="Technology" />
@@ -19,6 +19,6 @@ export default function TagList() {
       <TagItem tagName="Health" />
       <TagItem tagName="History" />
       <TagItem tagName="News" />
-    </Flex>
+    </SimpleGrid>
   );
 }

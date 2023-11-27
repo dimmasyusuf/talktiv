@@ -6,6 +6,8 @@ export default function HomePage() {
     <Flex
       direction="row"
       py="8"
+      wrap={{ base: 'wrap', md: 'nowrap' }}
+      gap="8"
     >
       <TagList />
       <Flex
