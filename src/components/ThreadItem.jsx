@@ -7,6 +7,7 @@ export default function ThreadItem() {
       direction="row"
       gap="4"
       w="100%"
+      cursor="pointer"
     >
       <Avatar
         name="Dimas Yusuf Qurohman"
