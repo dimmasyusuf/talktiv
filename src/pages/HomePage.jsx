@@ -1,12 +1,19 @@
-import { Center, Heading } from '@chakra-ui/react';
+import { Flex, useBreakpointValue } from '@chakra-ui/react';
+import TagList from '../components/TagList';
+import ThreadList from '../components/ThreadList';
 
 export default function HomePage() {
+  const isSmallScreen = useBreakpointValue({ base: true, md: false });
+
   return (
-    <Center
-      h="100vh"
-      w="100%"
+    <Flex
+      direction="row"
+      py={{ base: 4, sm: 6 }}
+      px={{ base: 4, sm: 6 }}
+      gap="8"
     >
-      <Heading>Talktiv</Heading>
-    </Center>
+      {isSmallScreen === false && <TagList />}
+      <ThreadList />
+    </Flex>
   );
 }

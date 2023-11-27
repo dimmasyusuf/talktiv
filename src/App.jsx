@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Navigation from './components/Navigation';
+import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
@@ -27,10 +27,10 @@ export default function App() {
 
   return (
     <>
-      <header style={{ maxWidth: '1536px', margin: 'auto' }}>
-        <Navigation />
+      <header style={{ maxWidth: '1200px', margin: 'auto' }}>
+        <Navbar />
       </header>
-      <main style={{ maxWidth: '1536px', margin: 'auto' }}>
+      <main style={{ maxWidth: '1200px', margin: 'auto' }}>
         <Routes>
           <Route
             path="/"
