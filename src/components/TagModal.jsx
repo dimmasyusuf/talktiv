@@ -1,5 +1,4 @@
 import {
-  Button,
   IconButton,
   Modal,
   ModalBody,
@@ -11,6 +10,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { RiNewspaperLine } from 'react-icons/ri';
+import TagList from './TagList';
 
 export default function TagModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,23 +30,21 @@ export default function TagModal() {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
+        size={{ base: 'full', md: 'xl' }}
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader
+            align="center"
+            mb="2"
+          >
+            Tag List
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
-
-          <ModalFooter>
-            <Button
-              colorScheme="blue"
-              mr={3}
-              onClick={onClose}
-            >
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
+          <ModalBody>
+            <TagList />
+          </ModalBody>
+          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </>
