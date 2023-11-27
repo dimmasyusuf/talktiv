@@ -15,7 +15,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-export default function CreateThread() {
+export default function ThreadModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -68,7 +68,7 @@ export default function CreateThread() {
                 <Textarea
                   type="text"
                   rounded="sm"
-                  h="128px"
+                  h="256px"
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>

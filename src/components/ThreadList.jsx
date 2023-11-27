@@ -1,5 +1,5 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react';
-import CreateThread from './CreateThread';
+import ThreadModal from './ThreadModal';
 import TagModal from './TagModal';
 import ThreadItem from './ThreadItem';
 
@@ -16,7 +16,7 @@ export default function ThreadList() {
         w="100%"
         gap="4"
       >
-        <CreateThread />
+        <ThreadModal />
         {isSmallScreen && <TagModal />}
       </Flex>
       <Flex
