@@ -7,7 +7,6 @@ export default function TagList() {
       columns={{ base: 2 }}
       w="100%"
       maxWidth={{ base: '100%', md: '300px' }}
-      px={{ base: 4, sm: 6 }}
       gap="2"
     >
       <TagItem tagName="All" />
