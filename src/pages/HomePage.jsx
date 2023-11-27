@@ -8,9 +8,8 @@ export default function HomePage() {
   return (
     <Flex
       direction="row"
-      py="8"
+      py={{ base: 4, sm: 6 }}
       px={{ base: 4, sm: 6 }}
-      wrap={{ base: 'wrap', md: 'nowrap' }}
       gap="8"
     >
       {isSmallScreen === false && <TagList />}

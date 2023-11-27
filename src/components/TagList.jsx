@@ -8,6 +8,7 @@ export default function TagList() {
       w="100%"
       maxWidth={{ base: '100%', md: '300px' }}
       gap="2"
+      h="100%"
     >
       <TagItem tagName="All" />
       <TagItem tagName="Technology" />
