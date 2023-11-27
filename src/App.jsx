@@ -27,10 +27,10 @@ export default function App() {
 
   return (
     <>
-      <header style={{ maxWidth: '1536px', margin: 'auto' }}>
+      <header style={{ maxWidth: '1200px', margin: 'auto' }}>
         <Navigation />
       </header>
-      <main style={{ maxWidth: '1536px', margin: 'auto' }}>
+      <main style={{ maxWidth: '1200px', margin: 'auto' }}>
         <Routes>
           <Route
             path="/"

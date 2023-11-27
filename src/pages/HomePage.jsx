@@ -1,12 +1,19 @@
-import { Center, Heading } from '@chakra-ui/react';
+import { Flex, Heading } from '@chakra-ui/react';
+import TagList from '../components/TagList';
 
 export default function HomePage() {
   return (
-    <Center
-      h="100vh"
-      w="100%"
+    <Flex
+      direction="row"
+      py="8"
     >
-      <Heading>Talktiv</Heading>
-    </Center>
+      <TagList />
+      <Flex
+        w="100%"
+        px={{ base: 4, sm: 6 }}
+      >
+        <Heading>Talktiv</Heading>
+      </Flex>
+    </Flex>
   );
 }
