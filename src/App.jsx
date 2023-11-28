@@ -7,7 +7,7 @@ import LeaderboardPage from './pages/LeaderboardPage';
 import DetailPage from './pages/DetailPage';
 
 export default function App() {
-  const authUser = true;
+  const authUser = null;
 
   if (authUser === null) {
     return (
