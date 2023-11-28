@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import LeaderboardPage from './pages/LeaderboardPage';
+import DetailPage from './pages/DetailPage';
 
 export default function App() {
   const authUser = true;
@@ -39,6 +40,10 @@ export default function App() {
           <Route
             path="/leaderboard"
             element={<LeaderboardPage />}
+          />
+          <Route
+            path="/:id"
+            element={<DetailPage />}
           />
         </Routes>
       </main>
