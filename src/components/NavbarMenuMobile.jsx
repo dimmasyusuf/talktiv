@@ -16,10 +16,11 @@ import {
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { RiChatSmile2Line, RiFlagLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function NavbarMenuMobile() {
+export default function NavbarMenuMobile({ authUser, signOut }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const authUser = false;
+  const { id, name, email, avatar } = authUser;
 
   if (authUser === null) {
     return (
@@ -84,7 +85,9 @@ export default function NavbarMenuMobile() {
         _hover={{ bg: 'white' }}
       >
         <Avatar
-          name="Dimas Yusuf Qurohman"
+          src={avatar}
+          name={name}
+          alt={id}
           size="sm"
           rounded="sm"
         />
@@ -102,7 +105,9 @@ export default function NavbarMenuMobile() {
               gap="4"
             >
               <Avatar
-                name="Dimas Yusuf Qurohman"
+                src={avatar}
+                name={name}
+                alt={id}
                 rounded="sm"
                 size="md"
               />
@@ -112,13 +117,13 @@ export default function NavbarMenuMobile() {
                   noOfLines="1"
                   as="b"
                 >
-                  Dimas Yusuf Qurohman
+                  {name}
                 </Text>
                 <Text
                   fontSize="xs"
                   noOfLines="1"
                 >
-                  dimasyusufqurohman@gmail.com
+                  {email}
                 </Text>
               </Flex>
             </Flex>
@@ -171,6 +176,7 @@ export default function NavbarMenuMobile() {
               color="white"
               _hover={{ bg: 'gray.800' }}
               rounded="sm"
+              onClick={signOut}
             >
               Logout
             </Button>
@@ -180,3 +186,15 @@ export default function NavbarMenuMobile() {
     </>
   );
 }
+
+const authUserShape = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};
+
+NavbarMenuMobile.propTypes = {
+  authUser: PropTypes.shape(authUserShape).isRequired,
+  signOut: PropTypes.func.isRequired,
+};
