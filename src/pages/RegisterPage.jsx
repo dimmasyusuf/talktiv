@@ -12,7 +12,7 @@ export default function RegisterPage() {
   const onRegister = ({ name, email, password }) => {
     dispatch(asyncRegisterUser({ name, email, password }));
 
-    navigate('/login');
+    navigate('/');
   };
 
   return (
