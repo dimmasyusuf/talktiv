@@ -16,8 +16,9 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
-export default function RegisterForm() {
+export default function RegisterForm({ register }) {
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -37,6 +38,7 @@ export default function RegisterForm() {
   const handleSubmit = () => {
     setLoading(true);
     setTimeout(() => {
+      register(formik.values);
       setLoading(false);
     }, 1000);
   };
@@ -138,3 +140,7 @@ export default function RegisterForm() {
     </Flex>
   );
 }
+
+RegisterForm.propTypes = {
+  register: PropTypes.func.isRequired,
+};
