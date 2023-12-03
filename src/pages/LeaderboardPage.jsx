@@ -7,7 +7,7 @@ export default function LeaderboardPage() {
     <Flex
       justify="center"
       align="center"
-      py="8"
+      py={{ base: 4, sm: 6 }}
       px={{ base: 4, sm: 6 }}
     >
       <Flex

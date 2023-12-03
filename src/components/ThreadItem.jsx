@@ -1,12 +1,16 @@
 import { Avatar, Button, Flex, Icon, IconButton, Text } from '@chakra-ui/react';
 import { ArrowDownIcon, ArrowUpIcon, ChatIcon } from '@chakra-ui/icons';
 import { BiDotsVertical } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 export default function ThreadItem() {
   return (
     <Flex
+      as={Link}
+      to="/:id"
       direction="column"
       cursor="pointer"
+      w="100%"
     >
       <Flex
         w="100%"
@@ -60,17 +64,20 @@ export default function ThreadItem() {
             <IconButton
               icon={<ArrowUpIcon />}
               rounded="sm"
+              size="sm"
             />
             <Text>28</Text>
             <IconButton
               icon={<ArrowDownIcon />}
               rounded="sm"
+              size="sm"
             />
           </Flex>
           <Button
             leftIcon={<ChatIcon />}
             rounded="sm"
             fontWeight="normal"
+            size="sm"
           >
             4
           </Button>

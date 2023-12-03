@@ -12,9 +12,10 @@ import {
 } from '@chakra-ui/react';
 import { RiChatSmile2Line, RiFlagLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function NavbarMenu() {
-  const authUser = false;
+export default function NavbarMenu({ authUser, signOut }) {
+  const { id, name, email, avatar } = authUser;
 
   if (authUser === null) {
     return (
@@ -83,7 +84,9 @@ export default function NavbarMenu() {
           _hover={{ bg: 'white' }}
         >
           <Avatar
-            name="Dimas Yusuf Qurohman"
+            src={avatar}
+            name={name}
+            alt={id}
             size="sm"
             rounded="sm"
           />
@@ -99,7 +102,9 @@ export default function NavbarMenu() {
               w="100%"
             >
               <Avatar
-                name="Dimas Yusuf Qurohman"
+                src={avatar}
+                name={name}
+                alt={id}
                 size="md"
                 rounded="sm"
               />
@@ -109,13 +114,13 @@ export default function NavbarMenu() {
                   fontSize="md"
                   noOfLines="1"
                 >
-                  Dimas Yusuf Qurohman
+                  {name}
                 </Text>
                 <Text
                   fontSize="xs"
                   noOfLines="1"
                 >
-                  dimasyusufqurohman@gmail.com
+                  {email}
                 </Text>
               </Flex>
             </Flex>
@@ -127,6 +132,7 @@ export default function NavbarMenu() {
               w="100%"
               rounded="sm"
               _hover={{ bg: 'gray.800' }}
+              onClick={signOut}
             >
               Logout
             </Button>
@@ -136,3 +142,15 @@ export default function NavbarMenu() {
     </Flex>
   );
 }
+
+const authUserShape = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};
+
+NavbarMenu.propTypes = {
+  authUser: PropTypes.shape(authUserShape).isRequired,
+  signOut: PropTypes.func.isRequired,
+};

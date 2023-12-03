@@ -1,8 +1,20 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
 import RegisterForm from '../components/RegisterForm';
 import Logo from '../components/Logo';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { asyncRegisterUser } from '../states/users/action';
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onRegister = ({ name, email, password }) => {
+    dispatch(asyncRegisterUser({ name, email, password }));
+
+    navigate('/');
+  };
+
   return (
     <Flex
       w="100%"
@@ -29,7 +41,7 @@ export default function RegisterPage() {
             Join Talktiv Community & Unlock Your Voice!
           </Text>
         </Flex>
-        <RegisterForm />
+        <RegisterForm register={onRegister} />
       </Flex>
     </Flex>
   );

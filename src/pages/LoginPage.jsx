@@ -1,8 +1,19 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
 import LoginForm from '../components/LoginForm';
 import Logo from '../components/Logo';
+import { useDispatch } from 'react-redux';
+import { asyncSetAuthUser } from '../states/authUser/action';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onLogin = ({ email, password }) => {
+    dispatch(asyncSetAuthUser({ email, password }));
+    navigate('/');
+  };
+
   return (
     <Flex
       w="100%"
@@ -27,7 +38,7 @@ export default function LoginPage() {
           <Heading>Welcome Back</Heading>
           <Text textAlign="center">Login to continue using Talktiv.</Text>
         </Flex>
-        <LoginForm />
+        <LoginForm login={onLogin} />
       </Flex>
     </Flex>
   );
