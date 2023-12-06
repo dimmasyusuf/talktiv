@@ -2,7 +2,6 @@ import { Button } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
 export default function TagItem({ category, onClickCategory, params }) {
-  console.log('params:', params);
   return (
     <>
       <Button
@@ -27,7 +26,7 @@ export default function TagItem({ category, onClickCategory, params }) {
 }
 
 TagItem.propTypes = {
-  category: PropTypes.string,
-  onClickCategory: PropTypes.func,
-  params: PropTypes.string,
+  category: PropTypes.string.isRequired,
+  onClickCategory: PropTypes.func.isRequired,
+  params: PropTypes.string.isRequired,
 };

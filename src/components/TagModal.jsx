@@ -13,7 +13,7 @@ import { RiNewspaperLine } from 'react-icons/ri';
 import TagList from './TagList';
 import PropTypes from 'prop-types';
 
-export default function TagModal({ threads }) {
+export default function TagModal({ categories, onClickCategory, params }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -43,7 +43,11 @@ export default function TagModal({ threads }) {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <TagList threads={threads} />
+            <TagList
+              categories={categories}
+              onClickCategory={onClickCategory}
+              params={params}
+            />
           </ModalBody>
           <ModalFooter></ModalFooter>
         </ModalContent>
@@ -53,5 +57,7 @@ export default function TagModal({ threads }) {
 }
 
 TagModal.propTypes = {
-  threads: PropTypes.arrayOf(PropTypes.object).isRequired,
+  categories: PropTypes.array.isRequired,
+  onClickCategory: PropTypes.func.isRequired,
+  params: PropTypes.string.isRequired,
 };

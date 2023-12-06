@@ -10,6 +10,9 @@ export default function ThreadList({
   upVote,
   neutralVote,
   downVote,
+  categories,
+  onClickCategory,
+  params,
 }) {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
 
@@ -24,7 +27,13 @@ export default function ThreadList({
         gap="4"
       >
         <ThreadModal addThread={addThread} />
-        {isSmallScreen && <TagModal threads={threads} />}
+        {isSmallScreen && (
+          <TagModal
+            categories={categories}
+            onClickCategory={onClickCategory}
+            params={params}
+          />
+        )}
       </Flex>
       <Flex
         direction="column"
@@ -50,4 +59,7 @@ ThreadList.propTypes = {
   upVote: PropTypes.func.isRequired,
   neutralVote: PropTypes.func.isRequired,
   downVote: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
+  onClickCategory: PropTypes.func.isRequired,
+  params: PropTypes.string.isRequired,
 };

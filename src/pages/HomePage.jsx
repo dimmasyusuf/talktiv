@@ -51,7 +51,7 @@ export default function HomePage() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const params = searchParams.get('category');
-  const categories = threads.map((thread) => thread.category);
+  const categories = threads.map((thread) => thread?.category);
   const categoriesList = [...new Set(categories)];
 
   const onClickCategory = (category) => {
@@ -63,10 +63,8 @@ export default function HomePage() {
   };
 
   const filteredThreads = threadList.filter((thread) =>
-    thread.category.includes(params)
+    thread?.category.includes(params)
   );
-
-  console.log('params:', params);
 
   return (
     <Flex
@@ -77,7 +75,6 @@ export default function HomePage() {
     >
       {isSmallScreen === false && (
         <TagList
-          threads={threadList}
           categories={categoriesList}
           onClickCategory={onClickCategory}
           params={params}
@@ -89,6 +86,9 @@ export default function HomePage() {
         upVote={onUpVote}
         neutralVote={onNeutralVote}
         downVote={onDownVote}
+        categories={categoriesList}
+        onClickCategory={onClickCategory}
+        params={params}
       />
     </Flex>
   );
