@@ -3,8 +3,6 @@ import LeaderboardItem from './LeaderboardItem';
 import PropTypes, { object } from 'prop-types';
 
 export default function LeaderboardList({ leaderboards }) {
-  console.log(leaderboards);
-
   return (
     <Flex
       w="100%"
@@ -23,5 +21,5 @@ export default function LeaderboardList({ leaderboards }) {
 }
 
 LeaderboardList.propTypes = {
-  leaderboards: PropTypes.arrayOf(object).isRequired,
+  leaderboards: PropTypes.arrayOf(object),
 };

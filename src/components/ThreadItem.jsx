@@ -111,26 +111,14 @@ export default function ThreadItem({
   );
 }
 
-const userShape = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-};
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const threadItemShape = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  likes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  totalComments: PropTypes.string.isRequired,
-  authUser: PropTypes.string.isRequired,
-  user: PropTypes.shape(userShape).isRequired,
-};
-
 ThreadItem.propTypes = {
-  ...threadItemShape,
-  like: PropTypes.func,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  body: PropTypes.string,
+  createdAt: PropTypes.string,
+  user: PropTypes.object,
+  upVotesBy: PropTypes.array,
+  upVote: PropTypes.func,
+  downVote: PropTypes.func,
+  totalComments: PropTypes.number,
 };

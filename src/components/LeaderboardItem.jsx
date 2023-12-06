@@ -1,5 +1,5 @@
 import { Avatar, Flex, Text } from '@chakra-ui/react';
-import PropTypes from 'prop-types';
+import PropTypes, { object } from 'prop-types';
 
 export default function LeaderboardItem({ index, score, user }) {
   return (
@@ -38,9 +38,7 @@ export default function LeaderboardItem({ index, score, user }) {
 }
 
 LeaderboardItem.propTypes = {
-  index: PropTypes.number.isRequired,
-  score: PropTypes.number.isRequired,
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+  index: PropTypes.number,
+  score: PropTypes.number,
+  user: PropTypes.shape(object),
 };

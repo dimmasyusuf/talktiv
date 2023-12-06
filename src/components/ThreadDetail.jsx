@@ -106,13 +106,13 @@ export default function ThreadDetail({
 }
 
 ThreadDetail.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  owner: PropTypes.object.isRequired,
-  comments: PropTypes.array.isRequired,
-  upVotesBy: PropTypes.array.isRequired,
-  upVote: PropTypes.func.isRequired,
-  downVote: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  body: PropTypes.string,
+  createdAt: PropTypes.string,
+  owner: PropTypes.object,
+  comments: PropTypes.array,
+  upVotesBy: PropTypes.array,
+  upVote: PropTypes.func,
+  downVote: PropTypes.func,
 };

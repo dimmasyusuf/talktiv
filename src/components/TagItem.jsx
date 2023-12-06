@@ -26,7 +26,7 @@ export default function TagItem({ category, onClickCategory, params }) {
 }
 
 TagItem.propTypes = {
-  category: PropTypes.string.isRequired,
-  onClickCategory: PropTypes.func.isRequired,
-  params: PropTypes.string.isRequired,
+  category: PropTypes.string,
+  onClickCategory: PropTypes.func,
+  params: PropTypes.string,
 };

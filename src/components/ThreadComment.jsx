@@ -67,10 +67,10 @@ export default function ThreadComment({
 }
 
 ThreadComment.propTypes = {
-  id: PropTypes.string.isRequired,
-  addComment: PropTypes.func.isRequired,
-  upVoteComment: PropTypes.func.isRequired,
-  downVoteComment: PropTypes.func.isRequired,
-  neutralVoteComment: PropTypes.func.isRequired,
-  comments: PropTypes.arrayOf(object).isRequired,
+  id: PropTypes.string,
+  addComment: PropTypes.func,
+  upVoteComment: PropTypes.func,
+  downVoteComment: PropTypes.func,
+  neutralVoteComment: PropTypes.func,
+  comments: PropTypes.arrayOf(object),
 };

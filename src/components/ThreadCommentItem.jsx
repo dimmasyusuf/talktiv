@@ -68,14 +68,11 @@ export default function ThreadCommentItem({
 }
 
 ThreadCommentItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  owner: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  createdAt: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  upVote: PropTypes.func.isRequired,
-  downVote: PropTypes.func.isRequired,
-  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  id: PropTypes.string,
+  owner: PropTypes.object,
+  createdAt: PropTypes.string,
+  content: PropTypes.string,
+  upVote: PropTypes.func,
+  downVote: PropTypes.func,
+  upVotesBy: PropTypes.array,
 };

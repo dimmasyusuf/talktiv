@@ -1,7 +1,7 @@
 import { Flex, useBreakpointValue } from '@chakra-ui/react';
 import ThreadModal from './ThreadModal';
 import TagModal from './TagModal';
-import ThreadItem, { threadItemShape } from './ThreadItem';
+import ThreadItem from './ThreadItem';
 import PropTypes from 'prop-types';
 
 export default function ThreadList({
@@ -54,12 +54,12 @@ export default function ThreadList({
 }
 
 ThreadList.propTypes = {
-  threads: PropTypes.arrayOf(PropTypes.shape(threadItemShape)).isRequired,
-  addThread: PropTypes.func.isRequired,
-  upVote: PropTypes.func.isRequired,
-  neutralVote: PropTypes.func.isRequired,
-  downVote: PropTypes.func.isRequired,
-  categories: PropTypes.array.isRequired,
-  onClickCategory: PropTypes.func.isRequired,
-  params: PropTypes.string.isRequired,
+  threads: PropTypes.array,
+  addThread: PropTypes.func,
+  upVote: PropTypes.func,
+  neutralVote: PropTypes.func,
+  downVote: PropTypes.func,
+  categories: PropTypes.array,
+  onClickCategory: PropTypes.func,
+  params: PropTypes.string,
 };

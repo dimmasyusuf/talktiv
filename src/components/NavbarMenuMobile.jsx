@@ -184,13 +184,13 @@ export default function NavbarMenuMobile({ authUser, signOut }) {
 }
 
 const authUserShape = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  avatar: PropTypes.string,
 };
 
 NavbarMenuMobile.propTypes = {
-  authUser: PropTypes.shape(authUserShape).isRequired,
-  signOut: PropTypes.func.isRequired,
+  authUser: PropTypes.shape(authUserShape),
+  signOut: PropTypes.func,
 };

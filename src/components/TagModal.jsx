@@ -57,7 +57,7 @@ export default function TagModal({ categories, onClickCategory, params }) {
 }
 
 TagModal.propTypes = {
-  categories: PropTypes.array.isRequired,
-  onClickCategory: PropTypes.func.isRequired,
-  params: PropTypes.string.isRequired,
+  categories: PropTypes.array,
+  onClickCategory: PropTypes.func,
+  params: PropTypes.string,
 };

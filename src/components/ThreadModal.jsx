@@ -120,5 +120,5 @@ export default function ThreadModal({ addThread }) {
 }
 
 ThreadModal.propTypes = {
-  addThread: PropTypes.func.isRequired,
+  addThread: PropTypes.func,
 };
