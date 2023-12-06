@@ -16,7 +16,6 @@ import {
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export default function ThreadModal({ addThread }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,11 +23,9 @@ export default function ThreadModal({ addThread }) {
   const [category, setCategory] = useState('');
   const [body, setBody] = useState('');
 
-  const navigate = useNavigate();
-
   const handleSubmit = () => {
     addThread({ title, body, category });
-    navigate('/');
+    onClose();
   };
 
   return (

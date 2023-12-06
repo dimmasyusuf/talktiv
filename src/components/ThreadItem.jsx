@@ -40,7 +40,7 @@ export default function ThreadItem({
         >
           <Flex gap="4">
             <Avatar
-              name={user.name}
+              name={user?.name}
               rounded="sm"
             />
             <Flex direction="column">
@@ -50,7 +50,7 @@ export default function ThreadItem({
                 noOfLines="1"
                 w="100%"
               >
-                {user.name}
+                {user?.name}
               </Text>
               <Text fontSize="sm">{postedAt(createdAt)}</Text>
             </Flex>
@@ -90,7 +90,7 @@ export default function ThreadItem({
             size="sm"
             onClick={onUpVoteClick}
           />
-          <Text>{upVotesBy.length}</Text>
+          <Text>{upVotesBy?.length}</Text>
           <IconButton
             icon={<ArrowDownIcon />}
             rounded="sm"
