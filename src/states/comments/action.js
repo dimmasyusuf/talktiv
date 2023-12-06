@@ -1,4 +1,5 @@
 import api from '../../utils/api';
+import { receiveThreadDetailActionCreator } from '../threadDetail/action';
 
 const ActionType = {
   ADD_COMMENT: 'ADD_COMMENT',
@@ -47,10 +48,14 @@ function downVoteCommentActionCreator({ commentId, userId }) {
 }
 
 function asyncAddComment(content) {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const { threadDetail } = getState();
+
     try {
       const comment = await api.createComment(content);
       dispatch(addCommentActionCreator(comment));
+      const newThreadDetail = await api.getDetailThread(threadDetail.id);
+      dispatch(receiveThreadDetailActionCreator(newThreadDetail));
     } catch (error) {
       alert(error.message);
     }
@@ -59,11 +64,13 @@ function asyncAddComment(content) {
 
 function asyncUpVoteComment(commentId) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
+    const { authUser, threadDetail } = getState();
     dispatch(upVoteCommentActionCreator({ commentId, userId: authUser.id }));
 
     try {
       await api.upVoteComment(commentId);
+      const newThreadDetail = await api.getDetailThread(threadDetail.id);
+      dispatch(receiveThreadDetailActionCreator(newThreadDetail));
     } catch (error) {
       alert(error.message);
       dispatch(upVoteCommentActionCreator({ commentId, userId: authUser.id }));
@@ -91,11 +98,13 @@ function asyncNeutralVoteComment(commentId) {
 
 function asyncDownVoteComment(commentId) {
   return async (dispatch, getState) => {
-    const { authUser } = getState();
+    const { authUser, threadDetail } = getState();
     dispatch(downVoteCommentActionCreator({ commentId, userId: authUser.id }));
 
     try {
       await api.downVoteComment(commentId);
+      const newThreadDetail = await api.getDetailThread(threadDetail.id);
+      dispatch(receiveThreadDetailActionCreator(newThreadDetail));
     } catch (error) {
       alert(error.message);
       dispatch(

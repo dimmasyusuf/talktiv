@@ -3,6 +3,7 @@ import { ArrowDownIcon, ArrowUpIcon, ChatIcon } from '@chakra-ui/icons';
 import { BiDotsVertical } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { postedAt } from '../utils/index';
 
 export default function ThreadItem({
   id,
@@ -51,7 +52,7 @@ export default function ThreadItem({
               >
                 {user.name}
               </Text>
-              <Text fontSize="sm">{createdAt}</Text>
+              <Text fontSize="sm">{postedAt(createdAt)}</Text>
             </Flex>
           </Flex>
           <Icon

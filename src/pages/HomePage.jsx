@@ -48,8 +48,6 @@ export default function HomePage() {
     authUser: authUser.id,
   }));
 
-  console.log(threadList);
-
   return (
     <Flex
       direction="row"

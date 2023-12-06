@@ -1,7 +1,25 @@
 import { Avatar, Flex, IconButton, Text } from '@chakra-ui/react';
 import { ArrowDownIcon, ArrowUpIcon } from '@chakra-ui/icons';
+import PropTypes from 'prop-types';
+import { postedAt } from '../utils/index';
 
-export default function ThreadCommentItem() {
+export default function ThreadCommentItem({
+  id,
+  owner,
+  createdAt,
+  content,
+  upVote,
+  downVote,
+  upVotesBy,
+}) {
+  const onUpVoteClick = () => {
+    upVote(id);
+  };
+
+  const onDownVoteClick = () => {
+    downVote(id);
+  };
+
   return (
     <Flex
       direction="column"
@@ -22,11 +40,11 @@ export default function ThreadCommentItem() {
             size="sm"
             rounded="sm"
           />
-          <Text as="b">Dimas Yusuf Qurohman</Text>
+          <Text as="b">{owner?.name}</Text>
         </Flex>
-        <Text fontSize="sm">2 minutes ago</Text>
+        <Text fontSize="sm">{postedAt(createdAt)}</Text>
       </Flex>
-      <Text mb="2">Lorem ipsum dolor.</Text>
+      <Text mb="2">{content}</Text>
       <Flex
         gap="4"
         align="center"
@@ -35,14 +53,29 @@ export default function ThreadCommentItem() {
           icon={<ArrowUpIcon />}
           rounded="sm"
           size="sm"
+          onClick={onUpVoteClick}
         />
-        <Text>4</Text>
+        <Text>{upVotesBy?.length}</Text>
         <IconButton
           icon={<ArrowDownIcon />}
           rounded="sm"
           size="sm"
+          onClick={onDownVoteClick}
         />
       </Flex>
     </Flex>
   );
 }
+
+ThreadCommentItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  owner: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  createdAt: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  upVote: PropTypes.func.isRequired,
+  downVote: PropTypes.func.isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
