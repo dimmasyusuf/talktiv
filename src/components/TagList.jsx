@@ -1,7 +1,8 @@
 import { SimpleGrid } from '@chakra-ui/react';
 import TagItem from './TagItem';
+import PropTypes from 'prop-types';
 
-export default function TagList() {
+export default function TagList({ threads }) {
   return (
     <SimpleGrid
       columns={{ base: 2 }}
@@ -10,15 +11,16 @@ export default function TagList() {
       gap="2"
       h="100%"
     >
-      <TagItem tagName="All" />
-      <TagItem tagName="Technology" />
-      <TagItem tagName="Science" />
-      <TagItem tagName="Finance" />
-      <TagItem tagName="Society" />
-      <TagItem tagName="Entertainment" />
-      <TagItem tagName="Health" />
-      <TagItem tagName="History" />
-      <TagItem tagName="News" />
+      {threads?.map((thread) => (
+        <TagItem
+          key={thread.id}
+          tagName={thread.category}
+        />
+      ))}
     </SimpleGrid>
   );
 }
+
+TagList.propTypes = {
+  threads: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

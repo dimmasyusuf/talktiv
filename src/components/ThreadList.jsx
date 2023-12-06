@@ -24,7 +24,7 @@ export default function ThreadList({
         gap="4"
       >
         <ThreadModal addThread={addThread} />
-        {isSmallScreen && <TagModal />}
+        {isSmallScreen && <TagModal threads={threads} />}
       </Flex>
       <Flex
         direction="column"

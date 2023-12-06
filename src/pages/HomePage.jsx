@@ -55,7 +55,7 @@ export default function HomePage() {
       px={{ base: 4, sm: 6 }}
       gap="8"
     >
-      {isSmallScreen === false && <TagList />}
+      {isSmallScreen === false && <TagList threads={threadList} />}
       <ThreadList
         threads={threadList}
         addThread={onAddThread}
