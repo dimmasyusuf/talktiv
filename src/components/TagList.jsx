@@ -2,7 +2,7 @@ import { SimpleGrid } from '@chakra-ui/react';
 import TagItem from './TagItem';
 import PropTypes from 'prop-types';
 
-export default function TagList({ threads }) {
+export default function TagList({ categories, onClickCategory, params }) {
   return (
     <SimpleGrid
       columns={{ base: 2 }}
@@ -11,10 +11,12 @@ export default function TagList({ threads }) {
       gap="2"
       h="100%"
     >
-      {threads?.map((thread) => (
+      {categories?.map((category, index) => (
         <TagItem
-          key={thread.id}
-          tagName={thread.category}
+          key={index}
+          category={category}
+          onClickCategory={onClickCategory}
+          params={params}
         />
       ))}
     </SimpleGrid>
@@ -22,5 +24,7 @@ export default function TagList({ threads }) {
 }
 
 TagList.propTypes = {
-  threads: PropTypes.arrayOf(PropTypes.object).isRequired,
+  categories: PropTypes.array,
+  onClickCategory: PropTypes.func,
+  params: PropTypes.string,
 };

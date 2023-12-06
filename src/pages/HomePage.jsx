@@ -10,6 +10,7 @@ import {
   asyncNeutralVoteThread,
   asyncDownVoteThread,
 } from '../states/threads/action';
+import { useSearchParams } from 'react-router-dom';
 
 export default function HomePage() {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
@@ -48,6 +49,25 @@ export default function HomePage() {
     authUser: authUser.id,
   }));
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const params = searchParams.get('category');
+  const categories = threads.map((thread) => thread.category);
+  const categoriesList = [...new Set(categories)];
+
+  const onClickCategory = (category) => {
+    if (params === category) {
+      setSearchParams('');
+    } else {
+      setSearchParams({ category });
+    }
+  };
+
+  const filteredThreads = threadList.filter((thread) =>
+    thread.category.includes(params)
+  );
+
+  console.log('params:', params);
+
   return (
     <Flex
       direction="row"
@@ -55,9 +75,16 @@ export default function HomePage() {
       px={{ base: 4, sm: 6 }}
       gap="8"
     >
-      {isSmallScreen === false && <TagList threads={threadList} />}
+      {isSmallScreen === false && (
+        <TagList
+          threads={threadList}
+          categories={categoriesList}
+          onClickCategory={onClickCategory}
+          params={params}
+        />
+      )}
       <ThreadList
-        threads={threadList}
+        threads={params ? filteredThreads : threadList}
         addThread={onAddThread}
         upVote={onUpVote}
         neutralVote={onNeutralVote}

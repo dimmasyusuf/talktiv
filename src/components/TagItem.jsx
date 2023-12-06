@@ -1,24 +1,33 @@
 import { Button } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-export default function TagItem({ tagName }) {
+export default function TagItem({ category, onClickCategory, params }) {
+  console.log('params:', params);
   return (
     <>
       <Button
         w="100%"
-        bg="white"
+        bg={params === category ? 'gray.700' : 'white'}
+        color={params === category ? 'white' : 'black'}
         rounded="sm"
         borderWidth="2px"
         borderColor="gray.700"
-        _hover={{ bg: 'gray.700', color: 'white' }}
+        _hover={
+          params === category
+            ? { bg: 'white', color: 'black' }
+            : { bg: 'gray.700', color: 'white' }
+        }
         noOfLines="1"
+        onClick={() => onClickCategory(category)}
       >
-        {tagName}
+        {category}
       </Button>
     </>
   );
 }
 
 TagItem.propTypes = {
-  tagName: PropTypes.string,
+  category: PropTypes.string,
+  onClickCategory: PropTypes.func,
+  params: PropTypes.string,
 };
