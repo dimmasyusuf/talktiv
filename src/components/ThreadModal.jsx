@@ -14,9 +14,22 @@ import {
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function ThreadModal() {
+export default function ThreadModal({ addThread }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [body, setBody] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    addThread({ title, body, category });
+    navigate('/');
+  };
 
   return (
     <>
@@ -51,6 +64,8 @@ export default function ThreadModal() {
                   type="text"
                   placeholder="Enter your title"
                   rounded="sm"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
@@ -60,6 +75,8 @@ export default function ThreadModal() {
                   type="text"
                   placeholder="Enter your tag"
                   rounded="sm"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
@@ -69,6 +86,8 @@ export default function ThreadModal() {
                   type="text"
                   rounded="sm"
                   h="256px"
+                  value={body}
+                  onChange={(e) => setBody(e.target.value)}
                 />
                 <FormErrorMessage></FormErrorMessage>
               </FormControl>
@@ -92,6 +111,7 @@ export default function ThreadModal() {
               color="white"
               _hover={{ bg: 'gray.800' }}
               w="100%"
+              onClick={handleSubmit}
             >
               Create
             </Button>
@@ -101,3 +121,7 @@ export default function ThreadModal() {
     </>
   );
 }
+
+ThreadModal.propTypes = {
+  addThread: PropTypes.func.isRequired,
+};

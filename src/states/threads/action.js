@@ -59,7 +59,7 @@ function downVoteThreadActionCreator({ threadId, userId }) {
 function asyncAddThread({ title, body, category }) {
   return async (dispatch) => {
     try {
-      const thread = await api.createThreada({ title, body, category });
+      const thread = await api.createThread({ title, body, category });
       dispatch(addThreadActionCreator(thread));
     } catch (error) {
       alert(error.message);
