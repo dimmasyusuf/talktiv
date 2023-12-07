@@ -58,8 +58,9 @@ export default function ThreadCommentItem({
           rounded="sm"
           size="sm"
           onClick={onUpVoteClick}
-          bg={isThreadVoted ? 'gray.700' : 'white'}
+          bg={isThreadVoted ? 'gray.700' : 'gray.200'}
           color={isThreadVoted ? 'white' : 'black'}
+          _focus={{ bg: 'gray.700', color: 'white' }}
         />
         <Text>{upVotesBy?.length}</Text>
         <IconButton
