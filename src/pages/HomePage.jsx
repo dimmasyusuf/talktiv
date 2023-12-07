@@ -81,6 +81,7 @@ export default function HomePage() {
         />
       )}
       <ThreadList
+        authUser={authUser}
         threads={params ? filteredThreads : threadList}
         addThread={onAddThread}
         upVote={onUpVote}

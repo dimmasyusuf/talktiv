@@ -15,6 +15,7 @@ export default function ThreadDetail({
   upVotesBy,
   upVote,
   downVote,
+  authUser,
 }) {
   const onUpVoteClick = () => {
     upVote(id);
@@ -23,6 +24,8 @@ export default function ThreadDetail({
   const onDownVoteClick = () => {
     downVote(id);
   };
+
+  const isThreadVoted = upVotesBy?.includes(authUser?.id);
 
   return (
     <Flex
@@ -68,7 +71,7 @@ export default function ThreadDetail({
           mb="2"
           textAlign="justify"
         >
-          {parse(body)}
+          {parse(`${body}`)}
         </Text>
       </Flex>
       <Flex
@@ -84,6 +87,8 @@ export default function ThreadDetail({
             rounded="sm"
             size="sm"
             onClick={onUpVoteClick}
+            bg={isThreadVoted ? 'gray.700' : 'white'}
+            color={isThreadVoted ? 'white' : 'black'}
           />
           <Text>{upVotesBy?.length}</Text>
           <IconButton
@@ -116,4 +121,5 @@ ThreadDetail.propTypes = {
   upVotesBy: PropTypes.array,
   upVote: PropTypes.func,
   downVote: PropTypes.func,
+  authUser: PropTypes.object,
 };

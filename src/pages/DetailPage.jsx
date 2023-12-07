@@ -19,7 +19,7 @@ import {
 
 export default function DetailPage() {
   const { id } = useParams();
-  const { threadDetail = null } = useSelector((states) => states);
+  const { threadDetail = null, authUser } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -70,13 +70,14 @@ export default function DetailPage() {
     >
       <ThreadDetail
         {...threadDetail}
-        user={threadDetail.owner}
+        authUser={authUser}
         upVote={onUpVote}
         neutralVote={onNeutralVote}
         downVote={onDownVote}
       />
       <ThreadComment
         {...threadDetail}
+        authUser={authUser}
         addComment={onAddComment}
         upVoteComment={onUpVoteComment}
         neutralVoteComment={onNeutralVoteComment}

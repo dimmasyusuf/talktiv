@@ -2,6 +2,7 @@ import { Avatar, Flex, IconButton, Text } from '@chakra-ui/react';
 import { ArrowDownIcon, ArrowUpIcon } from '@chakra-ui/icons';
 import PropTypes from 'prop-types';
 import { postedAt } from '../utils/index';
+import parse from 'html-react-parser';
 
 export default function ThreadCommentItem({
   id,
@@ -11,6 +12,7 @@ export default function ThreadCommentItem({
   upVote,
   downVote,
   upVotesBy,
+  authUser,
 }) {
   const onUpVoteClick = () => {
     upVote(id);
@@ -19,6 +21,8 @@ export default function ThreadCommentItem({
   const onDownVoteClick = () => {
     downVote(id);
   };
+
+  const isThreadVoted = upVotesBy?.includes(authUser?.id);
 
   return (
     <Flex
@@ -44,7 +48,7 @@ export default function ThreadCommentItem({
         </Flex>
         <Text fontSize="sm">{postedAt(createdAt)}</Text>
       </Flex>
-      <Text mb="2">{content}</Text>
+      <Text mb="2">{parse(`${content}`)}</Text>
       <Flex
         gap="4"
         align="center"
@@ -54,6 +58,8 @@ export default function ThreadCommentItem({
           rounded="sm"
           size="sm"
           onClick={onUpVoteClick}
+          bg={isThreadVoted ? 'gray.700' : 'white'}
+          color={isThreadVoted ? 'white' : 'black'}
         />
         <Text>{upVotesBy?.length}</Text>
         <IconButton
@@ -75,4 +81,5 @@ ThreadCommentItem.propTypes = {
   upVote: PropTypes.func,
   downVote: PropTypes.func,
   upVotesBy: PropTypes.array,
+  authUser: PropTypes.object,
 };

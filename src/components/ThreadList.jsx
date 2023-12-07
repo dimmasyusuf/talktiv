@@ -13,6 +13,7 @@ export default function ThreadList({
   categories,
   onClickCategory,
   params,
+  authUser,
 }) {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
 
@@ -46,6 +47,7 @@ export default function ThreadList({
             upVote={upVote}
             neutralVote={neutralVote}
             downVote={downVote}
+            authUser={authUser}
           />
         ))}
       </Flex>
@@ -62,4 +64,5 @@ ThreadList.propTypes = {
   categories: PropTypes.array,
   onClickCategory: PropTypes.func,
   params: PropTypes.string,
+  authUser: PropTypes.object,
 };

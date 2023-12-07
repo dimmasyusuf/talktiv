@@ -10,6 +10,7 @@ export default function ThreadComment({
   downVoteComment,
   neutralVoteComment,
   comments,
+  authUser,
 }) {
   const [comment, setComment] = useState('');
 
@@ -56,6 +57,7 @@ export default function ThreadComment({
           <ThreadCommentItem
             {...comment}
             key={comment.id}
+            authUser={authUser}
             upVote={upVoteComment}
             downVote={downVoteComment}
             neutralVote={neutralVoteComment}
@@ -73,4 +75,5 @@ ThreadComment.propTypes = {
   downVoteComment: PropTypes.func,
   neutralVoteComment: PropTypes.func,
   comments: PropTypes.arrayOf(object),
+  authUser: PropTypes.object,
 };

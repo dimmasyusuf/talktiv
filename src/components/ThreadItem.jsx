@@ -4,6 +4,7 @@ import { BiDotsVertical } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { postedAt } from '../utils/index';
+import parse from 'html-react-parser';
 
 export default function ThreadItem({
   id,
@@ -15,6 +16,7 @@ export default function ThreadItem({
   upVote,
   downVote,
   totalComments,
+  authUser,
 }) {
   const onUpVoteClick = () => {
     upVote(id);
@@ -23,6 +25,8 @@ export default function ThreadItem({
   const onDownVoteClick = () => {
     downVote(id);
   };
+
+  const isThreadVoted = upVotesBy?.includes(authUser?.id);
 
   return (
     <Flex direction="column">
@@ -72,7 +76,7 @@ export default function ThreadItem({
             mb="2"
             textAlign="justify"
           >
-            {body}
+            {parse(`${body}`)}
           </Text>
         </Flex>
       </Flex>
@@ -89,6 +93,8 @@ export default function ThreadItem({
             rounded="sm"
             size="sm"
             onClick={onUpVoteClick}
+            bg={isThreadVoted ? 'gray.700' : 'white'}
+            color={isThreadVoted ? 'white' : 'black'}
           />
           <Text>{upVotesBy?.length}</Text>
           <IconButton
@@ -121,4 +127,5 @@ ThreadItem.propTypes = {
   upVote: PropTypes.func,
   downVote: PropTypes.func,
   totalComments: PropTypes.number,
+  authUser: PropTypes.object,
 };
