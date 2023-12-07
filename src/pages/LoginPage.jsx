@@ -17,7 +17,7 @@ export default function LoginPage() {
   return (
     <Flex
       w="100%"
-      h="100vh"
+      h="100dvh"
       align="center"
       justify="center"
       p="6"
