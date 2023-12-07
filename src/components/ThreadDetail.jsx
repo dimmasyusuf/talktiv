@@ -3,6 +3,7 @@ import { ArrowDownIcon, ArrowUpIcon, ChatIcon } from '@chakra-ui/icons';
 import { BiDotsVertical } from 'react-icons/bi';
 import PropTypes from 'prop-types';
 import { postedAt } from '../utils/index';
+import parse from 'html-react-parser';
 
 export default function ThreadDetail({
   id,
@@ -67,7 +68,7 @@ export default function ThreadDetail({
           mb="2"
           textAlign="justify"
         >
-          {body}
+          {parse(body)}
         </Text>
       </Flex>
       <Flex
