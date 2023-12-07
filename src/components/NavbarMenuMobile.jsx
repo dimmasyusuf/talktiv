@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 
 export default function NavbarMenuMobile({ authUser, signOut }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { id, name, email, avatar } = authUser;
+  const { name, email } = authUser;
 
   if (authUser === null) {
     return (
@@ -85,9 +85,7 @@ export default function NavbarMenuMobile({ authUser, signOut }) {
         _hover={{ bg: 'white' }}
       >
         <Avatar
-          src={avatar}
           name={name}
-          alt={id}
           size="sm"
           rounded="sm"
         />
@@ -105,9 +103,7 @@ export default function NavbarMenuMobile({ authUser, signOut }) {
               gap="4"
             >
               <Avatar
-                src={avatar}
                 name={name}
-                alt={id}
                 rounded="sm"
                 size="md"
               />
@@ -188,13 +184,13 @@ export default function NavbarMenuMobile({ authUser, signOut }) {
 }
 
 const authUserShape = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  avatar: PropTypes.string,
 };
 
 NavbarMenuMobile.propTypes = {
-  authUser: PropTypes.shape(authUserShape).isRequired,
-  signOut: PropTypes.func.isRequired,
+  authUser: PropTypes.shape(authUserShape),
+  signOut: PropTypes.func,
 };

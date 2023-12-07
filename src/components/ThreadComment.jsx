@@ -1,7 +1,25 @@
 import { Button, Flex, Text, Textarea } from '@chakra-ui/react';
 import ThreadCommentItem from './ThreadCommentItem';
+import PropTypes, { object } from 'prop-types';
+import { useState } from 'react';
 
-export default function ThreadComment() {
+export default function ThreadComment({
+  id,
+  addComment,
+  upVoteComment,
+  downVoteComment,
+  neutralVoteComment,
+  comments,
+  authUser,
+}) {
+  const [comment, setComment] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addComment(comment, id);
+    setComment('');
+  };
+
   return (
     <Flex direction="column">
       <Text
@@ -15,6 +33,8 @@ export default function ThreadComment() {
           rounded="sm"
           h="128px"
           mb="4"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
         />
         <Button
           type="submit"
@@ -24,6 +44,7 @@ export default function ThreadComment() {
           color="white"
           _hover={{ bg: 'gray.800' }}
           mb="6"
+          onClick={handleSubmit}
         >
           Send
         </Button>
@@ -32,9 +53,27 @@ export default function ThreadComment() {
         direction="column"
         gap="4"
       >
-        <ThreadCommentItem />
-        <ThreadCommentItem />
+        {comments?.map((comment) => (
+          <ThreadCommentItem
+            {...comment}
+            key={comment.id}
+            authUser={authUser}
+            upVote={upVoteComment}
+            downVote={downVoteComment}
+            neutralVote={neutralVoteComment}
+          />
+        ))}
       </Flex>
     </Flex>
   );
 }
+
+ThreadComment.propTypes = {
+  id: PropTypes.string,
+  addComment: PropTypes.func,
+  upVoteComment: PropTypes.func,
+  downVoteComment: PropTypes.func,
+  neutralVoteComment: PropTypes.func,
+  comments: PropTypes.arrayOf(object),
+  authUser: PropTypes.object,
+};

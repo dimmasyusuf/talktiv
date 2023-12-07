@@ -1,21 +1,20 @@
 import { Avatar, Button, Flex, Icon, IconButton, Text } from '@chakra-ui/react';
 import { ArrowDownIcon, ArrowUpIcon, ChatIcon } from '@chakra-ui/icons';
 import { BiDotsVertical } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { postedAt } from '../utils/index';
 import parse from 'html-react-parser';
 
-export default function ThreadItem({
+export default function ThreadDetail({
   id,
   title,
   body,
   createdAt,
-  user,
+  owner,
+  comments,
   upVotesBy,
   upVote,
   downVote,
-  totalComments,
   authUser,
 }) {
   const onUpVoteClick = () => {
@@ -29,56 +28,51 @@ export default function ThreadItem({
   const isThreadVoted = upVotesBy?.includes(authUser?.id);
 
   return (
-    <Flex direction="column">
+    <Flex
+      direction="column"
+      w="100%"
+    >
       <Flex
-        as={Link}
-        to={`/threads/${id}`}
-        direction="column"
-        cursor="pointer"
         w="100%"
+        mb="2"
+        justify="space-between"
       >
-        <Flex
-          w="100%"
-          mb="2"
-          justify="space-between"
-        >
-          <Flex gap="4">
-            <Avatar
-              name={user?.name}
-              rounded="sm"
-            />
-            <Flex direction="column">
-              <Text
-                as="b"
-                fontSize="lg"
-                noOfLines="1"
-                w="100%"
-              >
-                {user?.name}
-              </Text>
-              <Text fontSize="sm">{postedAt(createdAt)}</Text>
-            </Flex>
-          </Flex>
-          <Icon
-            as={BiDotsVertical}
-            w="24px"
-            h="24px"
+        <Flex gap="4">
+          <Avatar
+            name={owner?.name}
+            rounded="sm"
           />
+          <Flex direction="column">
+            <Text
+              as="b"
+              fontSize="lg"
+              noOfLines="1"
+              w="100%"
+            >
+              {owner?.name}
+            </Text>
+            <Text fontSize="sm">{postedAt(createdAt)}</Text>
+          </Flex>
         </Flex>
-        <Flex direction="column">
-          <Text
-            as="b"
-            fontSize="lg"
-          >
-            {title}
-          </Text>
-          <Text
-            mb="2"
-            textAlign="justify"
-          >
-            {parse(`${body}`)}
-          </Text>
-        </Flex>
+        <Icon
+          as={BiDotsVertical}
+          w="24px"
+          h="24px"
+        />
+      </Flex>
+      <Flex direction="column">
+        <Text
+          as="b"
+          fontSize="lg"
+        >
+          {title}
+        </Text>
+        <Text
+          mb="2"
+          textAlign="justify"
+        >
+          {parse(`${body}`)}
+        </Text>
       </Flex>
       <Flex
         gap={{ base: 4, sm: 8 }}
@@ -110,22 +104,22 @@ export default function ThreadItem({
           fontWeight="normal"
           size="sm"
         >
-          {totalComments}
+          {comments?.length}
         </Button>
       </Flex>
     </Flex>
   );
 }
 
-ThreadItem.propTypes = {
+ThreadDetail.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   body: PropTypes.string,
   createdAt: PropTypes.string,
-  user: PropTypes.object,
+  owner: PropTypes.object,
+  comments: PropTypes.array,
   upVotesBy: PropTypes.array,
   upVote: PropTypes.func,
   downVote: PropTypes.func,
-  totalComments: PropTypes.number,
   authUser: PropTypes.object,
 };

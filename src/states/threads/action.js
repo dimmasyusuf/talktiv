@@ -56,11 +56,13 @@ function downVoteThreadActionCreator({ threadId, userId }) {
   };
 }
 
-function asyncAddThread({ title, body, category }) {
+function asyncAddThread({ title, body, category = 'all' }) {
   return async (dispatch) => {
     try {
-      const thread = await api.createThreada({ title, body, category });
+      const thread = await api.createThread({ title, body, category });
       dispatch(addThreadActionCreator(thread));
+      const newThreads = await api.getAllThreads();
+      dispatch(receiveThreadsActionCreator(newThreads));
     } catch (error) {
       alert(error.message);
     }

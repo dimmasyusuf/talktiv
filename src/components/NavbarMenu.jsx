@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default function NavbarMenu({ authUser, signOut }) {
-  const { id, name, email, avatar } = authUser;
+  const { name, email } = authUser;
 
   if (authUser === null) {
     return (
@@ -84,9 +84,7 @@ export default function NavbarMenu({ authUser, signOut }) {
           _hover={{ bg: 'white' }}
         >
           <Avatar
-            src={avatar}
             name={name}
-            alt={id}
             size="sm"
             rounded="sm"
           />
@@ -102,9 +100,7 @@ export default function NavbarMenu({ authUser, signOut }) {
               w="100%"
             >
               <Avatar
-                src={avatar}
                 name={name}
-                alt={id}
                 size="md"
                 rounded="sm"
               />
@@ -144,13 +140,13 @@ export default function NavbarMenu({ authUser, signOut }) {
 }
 
 const authUserShape = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  avatar: PropTypes.string,
 };
 
 NavbarMenu.propTypes = {
-  authUser: PropTypes.shape(authUserShape).isRequired,
-  signOut: PropTypes.func.isRequired,
+  authUser: PropTypes.shape(authUserShape),
+  signOut: PropTypes.func,
 };

@@ -11,8 +11,9 @@ import {
 } from '@chakra-ui/react';
 import { RiNewspaperLine } from 'react-icons/ri';
 import TagList from './TagList';
+import PropTypes from 'prop-types';
 
-export default function TagModal() {
+export default function TagModal({ categories, onClickCategory, params }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -42,7 +43,11 @@ export default function TagModal() {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <TagList />
+            <TagList
+              categories={categories}
+              onClickCategory={onClickCategory}
+              params={params}
+            />
           </ModalBody>
           <ModalFooter></ModalFooter>
         </ModalContent>
@@ -50,3 +55,9 @@ export default function TagModal() {
     </>
   );
 }
+
+TagModal.propTypes = {
+  categories: PropTypes.array,
+  onClickCategory: PropTypes.func,
+  params: PropTypes.string,
+};
