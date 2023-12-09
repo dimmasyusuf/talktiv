@@ -6,6 +6,8 @@ import {
   IconButton,
   Text,
   Skeleton,
+  SkeletonCircle,
+  SkeletonText,
 } from '@chakra-ui/react';
 import { ArrowDownIcon, ArrowUpIcon, ChatIcon } from '@chakra-ui/icons';
 import { BiDotsVertical } from 'react-icons/bi';
@@ -40,26 +42,41 @@ export default function ThreadItem({
   const isLoading = useSelector((states) => states.loading);
 
   return (
-    <Skeleton isLoaded={!isLoading}>
-      <Flex direction="column">
+    <Flex
+      direction="column"
+      mt={isLoading ? '2' : '0'}
+    >
+      <Flex
+        as={Link}
+        to={`/threads/${id}`}
+        direction="column"
+        cursor="pointer"
+        w="100%"
+      >
         <Flex
-          as={Link}
-          to={`/threads/${id}`}
-          direction="column"
-          cursor="pointer"
           w="100%"
+          mb="2"
+          justify="space-between"
         >
-          <Flex
-            w="100%"
-            mb="2"
-            justify="space-between"
-          >
-            <Flex gap="4">
+          <Flex gap="4">
+            <SkeletonCircle
+              isLoaded={!isLoading}
+              rounded="sm"
+              size="12"
+            >
               <Avatar
                 name={user?.name}
                 rounded="sm"
               />
-              <Flex direction="column">
+            </SkeletonCircle>
+            <Flex direction="column">
+              <SkeletonText
+                isLoaded={!isLoading}
+                rounded="sm"
+                noOfLines={1}
+                skeletonHeight="4"
+                mt={isLoading ? '2' : '0'}
+              >
                 <Text
                   as="b"
                   fontSize="lg"
@@ -68,37 +85,72 @@ export default function ThreadItem({
                 >
                   {user?.name}
                 </Text>
+              </SkeletonText>
+              <SkeletonText
+                isLoaded={!isLoading}
+                rounded="sm"
+                noOfLines={1}
+                mt={isLoading ? '2' : '0'}
+              >
                 <Text fontSize="sm">{postedAt(createdAt)}</Text>
-              </Flex>
+              </SkeletonText>
             </Flex>
+          </Flex>
+          <Skeleton
+            isLoaded={!isLoading}
+            rounded="sm"
+            height="24px"
+            width="12px"
+          >
             <Icon
               as={BiDotsVertical}
               w="24px"
               h="24px"
             />
-          </Flex>
-          <Flex direction="column">
+          </Skeleton>
+        </Flex>
+        <Flex direction="column">
+          <SkeletonText
+            isLoaded={!isLoading}
+            rounded="sm"
+            noOfLines={1}
+            skeletonHeight="4"
+            mt={isLoading ? '2' : '0'}
+          >
             <Text
               as="b"
               fontSize="lg"
             >
               {title}
             </Text>
+          </SkeletonText>
+          <SkeletonText
+            isLoaded={!isLoading}
+            rounded="sm"
+            noOfLines={4}
+            mt={isLoading ? '2' : '0'}
+          >
             <Text
               mb="2"
               textAlign="justify"
             >
               {parse(`${body}`)}
             </Text>
-          </Flex>
+          </SkeletonText>
         </Flex>
+      </Flex>
+      <Flex
+        gap={{ base: 4, sm: 8 }}
+        align="center"
+      >
         <Flex
-          gap={{ base: 4, sm: 8 }}
+          gap="4"
           align="center"
         >
-          <Flex
-            gap="4"
-            align="center"
+          <Skeleton
+            isLoaded={!isLoading}
+            rounded="sm"
+            mt={isLoading ? '2' : '0'}
           >
             <IconButton
               icon={<ArrowUpIcon />}
@@ -109,14 +161,34 @@ export default function ThreadItem({
               color={isThreadVoted ? 'white' : 'black'}
               _focus={{ bg: 'gray.700', color: 'white' }}
             />
+          </Skeleton>
+          <SkeletonText
+            isLoaded={!isLoading}
+            rounded="sm"
+            noOfLines={1}
+            skeletonHeight="4"
+            mt={isLoading ? '2' : '0'}
+          >
             <Text>{upVotesBy?.length}</Text>
+          </SkeletonText>
+          <Skeleton
+            isLoaded={!isLoading}
+            rounded="sm"
+            mt={isLoading ? '2' : '0'}
+          >
             <IconButton
               icon={<ArrowDownIcon />}
               rounded="sm"
               size="sm"
               onClick={onDownVoteClick}
             />
-          </Flex>
+          </Skeleton>
+        </Flex>
+        <Skeleton
+          isLoaded={!isLoading}
+          rounded="sm"
+          mt={isLoading ? '2' : '0'}
+        >
           <Button
             leftIcon={<ChatIcon />}
             rounded="sm"
@@ -125,9 +197,9 @@ export default function ThreadItem({
           >
             {totalComments}
           </Button>
-        </Flex>
+        </Skeleton>
       </Flex>
-    </Skeleton>
+    </Flex>
   );
 }
 
