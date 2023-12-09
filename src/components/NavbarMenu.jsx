@@ -9,13 +9,17 @@ import {
   MenuList,
   MenuItem,
   Text,
+  Skeleton,
 } from '@chakra-ui/react';
 import { RiChatSmile2Line, RiFlagLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 export default function NavbarMenu({ authUser, signOut }) {
   const { name, email } = authUser;
+
+  const isLoading = useSelector((states) => states.loading);
 
   if (authUser === null) {
     return (
@@ -47,48 +51,63 @@ export default function NavbarMenu({ authUser, signOut }) {
   return (
     <Flex gap="8">
       <Flex gap="4">
-        <Button
-          as={Link}
-          to="/"
-          gap="2"
+        <Skeleton
+          isLoaded={!isLoading}
           rounded="sm"
-          _hover={{ bg: 'white' }}
         >
-          <Icon
-            as={RiChatSmile2Line}
-            boxSize="6"
-          />
-          Thread
-        </Button>
-        <Button
-          as={Link}
-          to="/leaderboard"
-          gap="2"
+          <Button
+            as={Link}
+            to="/"
+            gap="2"
+            rounded="sm"
+            _hover={{ bg: 'white' }}
+          >
+            <Icon
+              as={RiChatSmile2Line}
+              boxSize="6"
+            />
+            Thread
+          </Button>
+        </Skeleton>
+        <Skeleton
+          isLoaded={!isLoading}
           rounded="sm"
-          _hover={{ bg: 'white' }}
         >
-          <Icon
-            as={RiFlagLine}
-            boxSize="6"
-          />
-          Leaderboard
-        </Button>
+          <Button
+            as={Link}
+            to="/leaderboard"
+            gap="2"
+            rounded="sm"
+            _hover={{ bg: 'white' }}
+          >
+            <Icon
+              as={RiFlagLine}
+              boxSize="6"
+            />
+            Leaderboard
+          </Button>
+        </Skeleton>
       </Flex>
       <Menu>
-        <MenuButton
-          as={Button}
-          rightIcon={<ChevronDownIcon />}
-          p="2"
+        <Skeleton
+          isLoaded={!isLoading}
           rounded="sm"
-          bg="white"
-          _hover={{ bg: 'white' }}
         >
-          <Avatar
-            name={name}
-            size="sm"
+          <MenuButton
+            as={Button}
+            rightIcon={<ChevronDownIcon />}
+            p="2"
             rounded="sm"
-          />
-        </MenuButton>
+            bg="white"
+            _hover={{ bg: 'white' }}
+          >
+            <Avatar
+              name={name}
+              size="sm"
+              rounded="sm"
+            />
+          </MenuButton>
+        </Skeleton>
         <MenuList
           w="300px"
           rounded="sm"
