@@ -8,7 +8,6 @@ export default function ThreadComment({
   addComment,
   upVoteComment,
   downVoteComment,
-  neutralVoteComment,
   comments,
   authUser,
 }) {
@@ -60,7 +59,6 @@ export default function ThreadComment({
             authUser={authUser}
             upVote={upVoteComment}
             downVote={downVoteComment}
-            neutralVote={neutralVoteComment}
           />
         ))}
       </Flex>
@@ -73,7 +71,6 @@ ThreadComment.propTypes = {
   addComment: PropTypes.func,
   upVoteComment: PropTypes.func,
   downVoteComment: PropTypes.func,
-  neutralVoteComment: PropTypes.func,
   comments: PropTypes.arrayOf(object),
   authUser: PropTypes.object,
 };

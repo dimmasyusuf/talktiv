@@ -8,7 +8,6 @@ export default function ThreadList({
   threads,
   addThread,
   upVote,
-  neutralVote,
   downVote,
   categories,
   onClickCategory,
@@ -45,7 +44,6 @@ export default function ThreadList({
             key={thread.id}
             {...thread}
             upVote={upVote}
-            neutralVote={neutralVote}
             downVote={downVote}
             authUser={authUser}
           />
@@ -59,7 +57,6 @@ ThreadList.propTypes = {
   threads: PropTypes.array,
   addThread: PropTypes.func,
   upVote: PropTypes.func,
-  neutralVote: PropTypes.func,
   downVote: PropTypes.func,
   categories: PropTypes.array,
   onClickCategory: PropTypes.func,
