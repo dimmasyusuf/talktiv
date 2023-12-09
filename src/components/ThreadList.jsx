@@ -1,8 +1,9 @@
-import { Flex, useBreakpointValue } from '@chakra-ui/react';
+import { Flex, Skeleton, useBreakpointValue } from '@chakra-ui/react';
 import ThreadModal from './ThreadModal';
 import TagModal from './TagModal';
 import ThreadItem from './ThreadItem';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 export default function ThreadList({
   threads,
@@ -15,6 +16,7 @@ export default function ThreadList({
   authUser,
 }) {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
+  const isLoading = useSelector((states) => states.loading);
 
   return (
     <Flex
@@ -28,11 +30,16 @@ export default function ThreadList({
       >
         <ThreadModal addThread={addThread} />
         {isSmallScreen && (
-          <TagModal
-            categories={categories}
-            onClickCategory={onClickCategory}
-            params={params}
-          />
+          <Skeleton
+            isLoaded={!isLoading}
+            rounded="sm"
+          >
+            <TagModal
+              categories={categories}
+              onClickCategory={onClickCategory}
+              params={params}
+            />
+          </Skeleton>
         )}
       </Flex>
       <Flex
