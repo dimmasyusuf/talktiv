@@ -18,7 +18,6 @@ export default function TagItem({ category, onClickCategory, params }) {
         }
         noOfLines="1"
         onClick={() => onClickCategory(category)}
-        _focus={{ bg: 'gray.700', color: 'white' }}
       >
         {category}
       </Button>
