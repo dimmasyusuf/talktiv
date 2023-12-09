@@ -7,26 +7,35 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Skeleton,
   useDisclosure,
 } from '@chakra-ui/react';
 import { RiNewspaperLine } from 'react-icons/ri';
 import TagList from './TagList';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 export default function TagModal({ categories, onClickCategory, params }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const isLoading = useSelector((states) => states.isLoading);
+
   return (
     <>
-      <IconButton
-        onClick={onOpen}
-        icon={<RiNewspaperLine />}
-        aria-label="Open Tag List"
+      <Skeleton
+        isLoaded={!isLoading}
         rounded="sm"
-        borderWidth="thin"
-        borderColor="gray.700"
-        _hover={{ bg: 'gray.700', color: 'white' }}
-      />
+      >
+        <IconButton
+          onClick={onOpen}
+          icon={<RiNewspaperLine />}
+          aria-label="Open Tag List"
+          rounded="sm"
+          borderWidth="thin"
+          borderColor="gray.700"
+          _hover={{ bg: 'gray.700', color: 'white' }}
+        />
+      </Skeleton>
 
       <Modal
         isOpen={isOpen}
