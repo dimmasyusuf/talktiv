@@ -30,10 +30,15 @@ export default function Navbar({ authUser, signOut }) {
         </Heading>
       </Skeleton>
       {isSmallScreen ? (
-        <NavbarMenuMobile
-          authUser={authUser}
-          signOut={signOut}
-        />
+        <Skeleton
+          isLoaded={!isLoading}
+          rounded="sm"
+        >
+          <NavbarMenuMobile
+            authUser={authUser}
+            signOut={signOut}
+          />
+        </Skeleton>
       ) : (
         <NavbarMenu
           authUser={authUser}
