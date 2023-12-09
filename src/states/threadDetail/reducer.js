@@ -10,19 +10,7 @@ function threadDetailReducer(threadDetail = [], action = {}) {
       return {
         ...threadDetail,
         upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
-          ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
-          : threadDetail.upVotesBy.concat(action.payload.userId),
-        downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
-          ? threadDetail.downVotesBy.filter(
-              (id) => id !== action.payload.userId
-            )
-          : threadDetail.downVotesBy,
-      };
-    case ActionType.NEUTRALVOTE_THREAD_DETAIL:
-      return {
-        ...threadDetail,
-        upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
-          ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
+          ? threadDetail.upVotesBy
           : threadDetail.upVotesBy.concat(action.payload.userId),
         downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
           ? threadDetail.downVotesBy.filter(
@@ -37,9 +25,7 @@ function threadDetailReducer(threadDetail = [], action = {}) {
           ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
           : threadDetail.upVotesBy,
         downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
-          ? threadDetail.downVotesBy.filter(
-              (id) => id !== action.payload.userId
-            )
+          ? threadDetail.downVotesBy
           : threadDetail.downVotesBy.concat(action.payload.userId),
       };
     default:

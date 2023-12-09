@@ -1,10 +1,21 @@
-import { Avatar, Button, Flex, Icon, IconButton, Text } from '@chakra-ui/react';
+import {
+  Avatar,
+  Button,
+  Flex,
+  Icon,
+  IconButton,
+  Text,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
+} from '@chakra-ui/react';
 import { ArrowDownIcon, ArrowUpIcon, ChatIcon } from '@chakra-ui/icons';
 import { BiDotsVertical } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { postedAt } from '../utils/index';
 import parse from 'html-react-parser';
+import { useSelector } from 'react-redux';
 
 export default function ThreadItem({
   id,
@@ -28,8 +39,13 @@ export default function ThreadItem({
 
   const isThreadVoted = upVotesBy?.includes(authUser?.id);
 
+  const isLoading = useSelector((states) => states.loading);
+
   return (
-    <Flex direction="column">
+    <Flex
+      direction="column"
+      mt={isLoading ? '2' : '0'}
+    >
       <Flex
         as={Link}
         to={`/threads/${id}`}
@@ -43,41 +59,84 @@ export default function ThreadItem({
           justify="space-between"
         >
           <Flex gap="4">
-            <Avatar
-              name={user?.name}
+            <SkeletonCircle
+              isLoaded={!isLoading}
               rounded="sm"
-            />
+              size="12"
+            >
+              <Avatar
+                name={user?.name}
+                rounded="sm"
+              />
+            </SkeletonCircle>
             <Flex direction="column">
-              <Text
-                as="b"
-                fontSize="lg"
-                noOfLines="1"
-                w="100%"
+              <SkeletonText
+                isLoaded={!isLoading}
+                rounded="sm"
+                noOfLines={1}
+                skeletonHeight="4"
+                mt={isLoading ? '2' : '0'}
               >
-                {user?.name}
-              </Text>
-              <Text fontSize="sm">{postedAt(createdAt)}</Text>
+                <Text
+                  as="b"
+                  fontSize="lg"
+                  noOfLines="1"
+                  w="100%"
+                >
+                  {user?.name}
+                </Text>
+              </SkeletonText>
+              <SkeletonText
+                isLoaded={!isLoading}
+                rounded="sm"
+                noOfLines={1}
+                mt={isLoading ? '2' : '0'}
+              >
+                <Text fontSize="sm">{postedAt(createdAt)}</Text>
+              </SkeletonText>
             </Flex>
           </Flex>
-          <Icon
-            as={BiDotsVertical}
-            w="24px"
-            h="24px"
-          />
+          <Skeleton
+            isLoaded={!isLoading}
+            rounded="sm"
+            height="24px"
+            width="12px"
+          >
+            <Icon
+              as={BiDotsVertical}
+              w="24px"
+              h="24px"
+            />
+          </Skeleton>
         </Flex>
         <Flex direction="column">
-          <Text
-            as="b"
-            fontSize="lg"
+          <SkeletonText
+            isLoaded={!isLoading}
+            rounded="sm"
+            noOfLines={1}
+            skeletonHeight="4"
+            mt={isLoading ? '2' : '0'}
           >
-            {title}
-          </Text>
-          <Text
-            mb="2"
-            textAlign="justify"
+            <Text
+              as="b"
+              fontSize="lg"
+            >
+              {title}
+            </Text>
+          </SkeletonText>
+          <SkeletonText
+            isLoaded={!isLoading}
+            rounded="sm"
+            noOfLines={4}
+            mt={isLoading ? '2' : '0'}
           >
-            {parse(`${body}`)}
-          </Text>
+            <Text
+              mb="2"
+              textAlign="justify"
+            >
+              {parse(`${body}`)}
+            </Text>
+          </SkeletonText>
         </Flex>
       </Flex>
       <Flex
@@ -88,31 +147,57 @@ export default function ThreadItem({
           gap="4"
           align="center"
         >
-          <IconButton
-            icon={<ArrowUpIcon />}
+          <Skeleton
+            isLoaded={!isLoading}
             rounded="sm"
-            size="sm"
-            onClick={onUpVoteClick}
-            bg={isThreadVoted ? 'gray.700' : 'gray.200'}
-            color={isThreadVoted ? 'white' : 'black'}
-            _focus={{ bg: 'gray.700', color: 'white' }}
-          />
-          <Text>{upVotesBy?.length}</Text>
-          <IconButton
-            icon={<ArrowDownIcon />}
+            mt={isLoading ? '2' : '0'}
+          >
+            <IconButton
+              icon={<ArrowUpIcon />}
+              rounded="sm"
+              size="sm"
+              onClick={onUpVoteClick}
+              bg={isThreadVoted ? 'gray.700' : 'gray.100'}
+              color={isThreadVoted ? 'white' : 'black'}
+              _focus={{ bg: 'gray.700', color: 'white' }}
+            />
+          </Skeleton>
+          <SkeletonText
+            isLoaded={!isLoading}
             rounded="sm"
-            size="sm"
-            onClick={onDownVoteClick}
-          />
+            noOfLines={1}
+            skeletonHeight="4"
+            mt={isLoading ? '2' : '0'}
+          >
+            <Text>{upVotesBy?.length}</Text>
+          </SkeletonText>
+          <Skeleton
+            isLoaded={!isLoading}
+            rounded="sm"
+            mt={isLoading ? '2' : '0'}
+          >
+            <IconButton
+              icon={<ArrowDownIcon />}
+              rounded="sm"
+              size="sm"
+              onClick={onDownVoteClick}
+            />
+          </Skeleton>
         </Flex>
-        <Button
-          leftIcon={<ChatIcon />}
+        <Skeleton
+          isLoaded={!isLoading}
           rounded="sm"
-          fontWeight="normal"
-          size="sm"
+          mt={isLoading ? '2' : '0'}
         >
-          {totalComments}
-        </Button>
+          <Button
+            leftIcon={<ChatIcon />}
+            rounded="sm"
+            fontWeight="normal"
+            size="sm"
+          >
+            {totalComments}
+          </Button>
+        </Skeleton>
       </Flex>
     </Flex>
   );

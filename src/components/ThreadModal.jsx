@@ -13,15 +13,19 @@ import {
   ModalOverlay,
   Textarea,
   useDisclosure,
+  Skeleton,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function ThreadModal({ addThread }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [body, setBody] = useState('');
+
+  const isLoading = useSelector((states) => states.loading);
 
   const handleSubmit = () => {
     addThread({ title, body, category });
@@ -30,16 +34,22 @@ export default function ThreadModal({ addThread }) {
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        w="100%"
+      <Skeleton
+        isLoaded={!isLoading}
         rounded="sm"
-        bg="gray.700"
-        color="white"
-        _hover={{ bg: 'gray.800' }}
+        width="100%"
       >
-        Create Thread
-      </Button>
+        <Button
+          onClick={onOpen}
+          w="100%"
+          rounded="sm"
+          bg="gray.700"
+          color="white"
+          _hover={{ bg: 'gray.800' }}
+        >
+          Create Thread
+        </Button>
+      </Skeleton>
 
       <Modal
         isOpen={isOpen}

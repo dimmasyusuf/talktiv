@@ -7,7 +7,6 @@ import { asyncPopulateUsersAndThreads } from '../states/shared/action';
 import {
   asyncAddThread,
   asyncUpVoteThread,
-  asyncNeutralVoteThread,
   asyncDownVoteThread,
 } from '../states/threads/action';
 import { useSearchParams } from 'react-router-dom';
@@ -33,10 +32,6 @@ export default function HomePage() {
 
   const onUpVote = (threadId) => {
     dispatch(asyncUpVoteThread(threadId));
-  };
-
-  const onNeutralVote = (threadId) => {
-    dispatch(asyncNeutralVoteThread(threadId));
   };
 
   const onDownVote = (threadId) => {
@@ -85,7 +80,6 @@ export default function HomePage() {
         threads={params ? filteredThreads : threadList}
         addThread={onAddThread}
         upVote={onUpVote}
-        neutralVote={onNeutralVote}
         downVote={onDownVote}
         categories={categoriesList}
         onClickCategory={onClickCategory}

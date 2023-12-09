@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import {
   asyncDownVoteThreadDetail,
-  asyncNeutralVoteThreadDetail,
   asyncReceiveThreadDetail,
   asyncUpVoteThreadDetail,
 } from '../states/threadDetail/action';
@@ -14,7 +13,6 @@ import {
   asyncAddComment,
   asyncUpVoteComment,
   asyncDownVoteComment,
-  asyncNeutralVoteComment,
 } from '../states/comments/action';
 
 export default function DetailPage() {
@@ -30,10 +28,6 @@ export default function DetailPage() {
     dispatch(asyncUpVoteThreadDetail(threadId));
   };
 
-  const onNeutralVote = (threadId) => {
-    dispatch(asyncNeutralVoteThreadDetail(threadId));
-  };
-
   const onDownVote = (threadId) => {
     dispatch(asyncDownVoteThreadDetail(threadId));
   };
@@ -44,10 +38,6 @@ export default function DetailPage() {
 
   const onUpVoteComment = (commentId) => {
     dispatch(asyncUpVoteComment({ threadId: id, commentId }));
-  };
-
-  const onNeutralVoteComment = (commentId) => {
-    dispatch(asyncNeutralVoteComment({ threadId: id, commentId }));
   };
 
   const onDownVoteComment = (commentId) => {
@@ -72,7 +62,6 @@ export default function DetailPage() {
         {...threadDetail}
         authUser={authUser}
         upVote={onUpVote}
-        neutralVote={onNeutralVote}
         downVote={onDownVote}
       />
       <ThreadComment
@@ -80,7 +69,6 @@ export default function DetailPage() {
         authUser={authUser}
         addComment={onAddComment}
         upVoteComment={onUpVoteComment}
-        neutralVoteComment={onNeutralVoteComment}
         downVoteComment={onDownVoteComment}
       />
     </Flex>

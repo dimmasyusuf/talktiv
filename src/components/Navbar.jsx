@@ -1,11 +1,13 @@
-import { Flex, Heading, useBreakpointValue } from '@chakra-ui/react';
+import { Flex, Heading, Skeleton, useBreakpointValue } from '@chakra-ui/react';
 import NavbarMenu from './NavbarMenu';
 import NavbarMenuMobile from './NavbarMenuMobile';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 export default function Navbar({ authUser, signOut }) {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
+  const isLoading = useSelector((states) => states.loading);
 
   return (
     <Flex
@@ -16,17 +18,27 @@ export default function Navbar({ authUser, signOut }) {
       justify="space-between"
       align="center"
     >
-      <Heading
-        as={Link}
-        to="/"
+      <Skeleton
+        isLoaded={!isLoading}
+        rounded="sm"
       >
-        Talktiv.
-      </Heading>
+        <Heading
+          as={Link}
+          to="/"
+        >
+          Talktiv.
+        </Heading>
+      </Skeleton>
       {isSmallScreen ? (
-        <NavbarMenuMobile
-          authUser={authUser}
-          signOut={signOut}
-        />
+        <Skeleton
+          isLoaded={!isLoading}
+          rounded="sm"
+        >
+          <NavbarMenuMobile
+            authUser={authUser}
+            signOut={signOut}
+          />
+        </Skeleton>
       ) : (
         <NavbarMenu
           authUser={authUser}

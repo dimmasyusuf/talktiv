@@ -4,7 +4,6 @@ const ActionType = {
   ADD_THREAD: 'ADD_THREAD',
   RECEIVE_THREADS: 'RECEIVE_THREADS',
   UPVOTE_THREAD: 'UPVOTE_THREAD',
-  NEUTRALVOTE_THREAD: 'NEUTRALVOTE_THREAD',
   DOWNVOTE_THREAD: 'DOWNVOTE_THREAD',
 };
 
@@ -29,16 +28,6 @@ function receiveThreadsActionCreator(threads) {
 function upVoteThreadActionCreator({ threadId, userId }) {
   return {
     type: ActionType.UPVOTE_THREAD,
-    payload: {
-      threadId,
-      userId,
-    },
-  };
-}
-
-function neutralVoteThreadActionCreator({ threadId, userId }) {
-  return {
-    type: ActionType.NEUTRALVOTE_THREAD,
     payload: {
       threadId,
       userId,
@@ -83,22 +72,6 @@ function asyncUpVoteThread(threadId) {
   };
 }
 
-function asyncNeutralVoteThread(threadId) {
-  return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser.id }));
-
-    try {
-      await api.neutralVoteThread;
-    } catch (error) {
-      alert(error.message);
-      dispatch(
-        neutralVoteThreadActionCreator({ threadId, userId: authUser.id })
-      );
-    }
-  };
-}
-
 function asyncDownVoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
@@ -118,10 +91,8 @@ export {
   addThreadActionCreator,
   receiveThreadsActionCreator,
   upVoteThreadActionCreator,
-  neutralVoteThreadActionCreator,
   downVoteThreadActionCreator,
   asyncAddThread,
   asyncUpVoteThread,
-  asyncNeutralVoteThread,
   asyncDownVoteThread,
 };

@@ -1,5 +1,9 @@
 import api from '../../utils/api';
 import { setAuthUserActionCreator } from '../authUser/action';
+import {
+  showLoadingActionCreator,
+  hideLoadingActionCreator,
+} from '../loading/action';
 
 const ActionType = {
   SET_IS_PRELOAD: 'SET_IS_PRELOAD',
@@ -17,6 +21,7 @@ function setIsPreloadActionCreator(isPreLoad) {
 function asyncPreloadProcess() {
   return async (dispatch) => {
     try {
+      dispatch(showLoadingActionCreator());
       // preload process
       const authUser = await api.getOwnProfile();
       dispatch(setAuthUserActionCreator(authUser));
@@ -27,6 +32,10 @@ function asyncPreloadProcess() {
       // end preload process
       dispatch(setIsPreloadActionCreator(false));
     }
+
+    setTimeout(() => {
+      dispatch(hideLoadingActionCreator());
+    }, 3000);
   };
 }
 

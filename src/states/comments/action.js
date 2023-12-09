@@ -4,7 +4,6 @@ import { receiveThreadDetailActionCreator } from '../threadDetail/action';
 const ActionType = {
   ADD_COMMENT: 'ADD_COMMENT',
   UPVOTE_COMMENT: 'UPVOTE_COMMENT',
-  NEUTRALVOTE_COMMENT: 'NEUTRALVOTE_COMMENT',
   DOWNVOTE_COMMENT: 'DOWNVOTE_COMMENT',
 };
 
@@ -20,16 +19,6 @@ function addCommentActionCreator(comment) {
 function upVoteCommentActionCreator({ commentId, userId }) {
   return {
     type: ActionType.UPVOTE_COMMENT,
-    payload: {
-      commentId,
-      userId,
-    },
-  };
-}
-
-function neutralVoteCommentActionCreator({ commentId, userId }) {
-  return {
-    type: ActionType.NEUTRALVOTE_COMMENT,
     payload: {
       commentId,
       userId,
@@ -78,24 +67,6 @@ function asyncUpVoteComment(commentId) {
   };
 }
 
-function asyncNeutralVoteComment(commentId) {
-  return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(
-      neutralVoteCommentActionCreator({ commentId, userId: authUser.id })
-    );
-
-    try {
-      await api.neutralVoteComment;
-    } catch (error) {
-      alert(error.message);
-      dispatch(
-        neutralVoteCommentActionCreator({ commentId, userId: authUser.id })
-      );
-    }
-  };
-}
-
 function asyncDownVoteComment(commentId) {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
@@ -118,10 +89,8 @@ export {
   ActionType,
   addCommentActionCreator,
   upVoteCommentActionCreator,
-  neutralVoteCommentActionCreator,
   downVoteCommentActionCreator,
   asyncAddComment,
   asyncUpVoteComment,
-  asyncNeutralVoteComment,
   asyncDownVoteComment,
 };
