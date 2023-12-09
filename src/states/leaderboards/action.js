@@ -19,7 +19,9 @@ function asyncReceiveLeaderboards() {
       const leaderboards = await api.getLeaderboards();
       dispatch(receiveLeaderboardsActionCreator(leaderboards));
     } catch (error) {
-      alert(error.message);
+      if (typeof window !== 'undefined') {
+        window.alert(error.message);
+      }
     }
   };
 }
