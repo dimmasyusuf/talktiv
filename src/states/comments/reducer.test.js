@@ -1,3 +1,13 @@
+/**
+ * comments Reducer Testing Scenario
+ *
+ * - should return the initial state when given by unknown action
+ * - should return the comments when given by RECEIVE_COMMENTS action
+ * - should return the comments with the new comment when given by ADD_COMMENT action
+ * - should return the comments with the new comment when given by UPVOTE_COMMENT action
+ * - should return the comments with the new comment when given by DOWNVOTE_COMMENT action
+ */
+
 import { describe, it, expect } from 'vitest';
 import commentsReducer from './reducer';
 import { ActionType } from './action';

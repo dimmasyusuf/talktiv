@@ -1,3 +1,10 @@
+/**
+ * leaderboards Action Testing Scenario
+ *
+ * - should dispatch receiveLeaderboardsActionCreator with leaderboards from api.getLeaderboards
+ * - should dispatch receiveLeaderboardsActionCreator with empty array when api.getLeaderboards failed
+ */
+
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import api from '../../utils/api';
 import { receiveLeaderboardsActionCreator } from './action';
