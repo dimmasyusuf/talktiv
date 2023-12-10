@@ -10,7 +10,7 @@
 
 describe('Register spec', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5174/register');
+    cy.visit('http://localhost:5173/register');
   });
 
   it('should display register page correctly', () => {
