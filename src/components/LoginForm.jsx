@@ -63,7 +63,7 @@ export default function LoginForm({ login }) {
             type="email"
             placeholder="Email Address"
             rounded="sm"
-            name="password"
+            name="email"
             onChange={handleForm}
           />
           <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
