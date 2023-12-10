@@ -1,3 +1,10 @@
+/**
+ * isPreload Action Testing Scenario
+ *
+ * - should dispatch action correctly when data fetching success
+ * - should dispatch action correctly when data fetching failed
+ */
+
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import api from '../../utils/api';
 import { setIsPreloadActionCreator, asyncPreloadProcess } from './action';

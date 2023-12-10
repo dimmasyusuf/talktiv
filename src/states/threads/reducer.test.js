@@ -1,3 +1,13 @@
+/**
+ * threads Reducer Testing Scenario
+ *
+ * - should return the initial state when given by unknown action
+ * - should return the threads when given by RECEIVE_THREADS action
+ * - should return the threads with the new thread when given by ADD_THREAD action
+ * - should return the threads with the new thread when given by UPVOTE_THREAD action
+ * - should return the threads with the new thread when given by DOWNVOTE_THREAD action
+ */
+
 import { describe, it, expect } from 'vitest';
 import threadsReducer from './reducer';
 
@@ -91,5 +101,77 @@ describe('threadsReducer function', () => {
 
     // assert
     expect(nextState).toEqual([action.payload.threads, ...initialState]);
+  });
+
+  it('should return the threads with the new thread when given by UPVOTE_THREAD action', () => {
+    // arrange
+    const initialState = [
+      {
+        id: 1,
+        title: 'Thread 1',
+        body: 'Body 1',
+        category: 'Category 1',
+        createdAt: '2018-01-01T00:00:00.000Z',
+        ownerId: 'users-1',
+        upVotesBy: [],
+        downVotesBy: [],
+        totalComments: 0,
+      },
+    ];
+
+    const action = {
+      type: 'UPVOTE_THREAD',
+      payload: {
+        threadId: 1,
+        userId: 'users-2',
+      },
+    };
+
+    // action
+    const nextState = threadsReducer(initialState, action);
+
+    // assert
+    expect(nextState).toEqual([
+      {
+        ...initialState[0],
+        upVotesBy: [action.payload.userId],
+      },
+    ]);
+  });
+
+  it('should return the threads with the new thread when given by DOWNVOTE_THREAD action', () => {
+    // arrange
+    const initialState = [
+      {
+        id: 1,
+        title: 'Thread 1',
+        body: 'Body 1',
+        category: 'Category 1',
+        createdAt: '2018-01-01T00:00:00.000Z',
+        ownerId: 'users-1',
+        upVotesBy: [],
+        downVotesBy: [],
+        totalComments: 0,
+      },
+    ];
+
+    const action = {
+      type: 'DOWNVOTE_THREAD',
+      payload: {
+        threadId: 1,
+        userId: 'users-2',
+      },
+    };
+
+    // action
+    const nextState = threadsReducer(initialState, action);
+
+    // assert
+    expect(nextState).toEqual([
+      {
+        ...initialState[0],
+        downVotesBy: [action.payload.userId],
+      },
+    ]);
   });
 });
